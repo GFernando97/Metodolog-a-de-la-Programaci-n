@@ -9,7 +9,7 @@ using namespace std;
 class Intervalo{
 private:
   bool cerradoInf;
-  bool cerrradoSup;
+  bool cerradoSup;
   double cotaInf;
   double cotaSup;
 
@@ -64,13 +64,13 @@ public:
    * @brief Consulta si el intervalo es cerrado en su cota inferior
    * @return @retval true si es cerrado @retval false si es cerrado
    */
-  double dentroCotaInf()const;
+  bool dentroCotaInf()const {return cerradoInf;}
 
   /**
    * @brief Consulta si el intervalo es cerrado en su cota superior
    * @return @retval true si es cerrado @retval false si es cerrado
    */
-  double dentroCotaSup()const;
+  bool dentroCotaSup()const { return cerradoSup;}
 
   /**
    * @brief Define los valores del intervalo
@@ -86,7 +86,7 @@ public:
    * @brief Consulta si el intervalo almacenado es vacío o no
    * @return @retval true si es un intervalo vacío, @retval false en otro caso
    */
-  bool esVacio()const;
+  bool esVacio()const {return cotaInf==NULL;}
 
   /**
    * @brief Consulta si un determinado valor está dentro del intervalo
