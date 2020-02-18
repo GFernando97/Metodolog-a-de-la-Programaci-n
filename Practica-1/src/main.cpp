@@ -98,6 +98,9 @@ int main(){
     Intervalo interv[CAPACIDAD];
     double v[CAPACIDAD];
 
+    cout << "El intervalo creado sin parametros es considerado un intervalo:\n";
+    comprobarVacio(vacio);
+
     cout << "Cuantos intervalos (max 10):";
     do{
         cin >> nintervalos;
