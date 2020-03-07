@@ -1,0 +1,38 @@
+\begin{theindex}
+
+  \item {get\+Frequency}
+    \subitem {Language}, \hyperpage{6}
+  \item {get\+Language}
+    \subitem {Language}, \hyperpage{6}
+  \item {get\+Letter\+Set}
+    \subitem {Language}, \hyperpage{7}
+  \item {get\+Score}
+    \subitem {Language}, \hyperpage{7}
+
+  \indexspace
+
+  \item {include/language.\+h}, \hyperpage{11}
+
+  \indexspace
+
+  \item {Language}, \hyperpage{5}
+    \subitem {get\+Frequency}, \hyperpage{6}
+    \subitem {get\+Language}, \hyperpage{6}
+    \subitem {get\+Letter\+Set}, \hyperpage{7}
+    \subitem {get\+Score}, \hyperpage{7}
+    \subitem {Language}, \hyperpage{6}
+    \subitem {query}, \hyperpage{7}
+    \subitem {set\+Language}, \hyperpage{8}
+
+  \indexspace
+
+  \item {query}
+    \subitem {Language}, \hyperpage{7}
+
+  \indexspace
+
+  \item {set\+Language}
+    \subitem {Language}, \hyperpage{8}
+  \item {src/language.\+cpp}, \hyperpage{12}
+
+\end{theindex}

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>LANGUAGES AND WORD LISTS: Fichero Fuente include/language.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LANGUAGES AND WORD LISTS
+   &#160;<span id="projectnumber">0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">language.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="language_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef LANGUAGE_H</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define LANGUAGE_H</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;wordlist.h&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classLanguage.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLanguage.html">Language</a>{</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classLanguage.html#a09448361f9188bceaaeebc5576cd6896">Language</a>(); </div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classLanguage.html#a09448361f9188bceaaeebc5576cd6896">Language</a>(std::string language); </div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLanguage.html#a677a05e98da32c5c54b6bf6343f80e21">query</a>(std::string word) <span class="keyword">const</span>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::string <a class="code" href="classLanguage.html#ac78d5ca1b8305425b3343b53dca48b25">getLanguage</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLanguage.html#accc1c22d8bba3002a71bea06cecf624b">setLanguage</a>(std::string lang);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLanguage.html#a39a391f8edca1cbdfeea606d968f2c4a">getFrequency</a>(<span class="keywordtype">char</span> letter) <span class="keyword">const</span>;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLanguage.html#aa750e6f524fc6a51d0ef82dee5826fbf">getScore</a>(<span class="keywordtype">char</span> letter) <span class="keyword">const</span>;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::string <a class="code" href="classLanguage.html#a8c26af3042d9808963f05450f2d28f7e">getLetterSet</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::string language;   </div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Trie wordlist;              </div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::string letterset;  </div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::vector &lt;int&gt; frequencies,  </div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    scores;                                 </div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    </div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div><div class="ttc" id="classLanguage_html_accc1c22d8bba3002a71bea06cecf624b"><div class="ttname"><a href="classLanguage.html#accc1c22d8bba3002a71bea06cecf624b">Language::setLanguage</a></div><div class="ttdeci">void setLanguage(std::string lang)</div><div class="ttdoc">Loads the chosen language, which must be under &lt;root&gt;/languages folder. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00026">language.cpp:26</a></div></div>
+<div class="ttc" id="classLanguage_html_a8c26af3042d9808963f05450f2d28f7e"><div class="ttname"><a href="classLanguage.html#a8c26af3042d9808963f05450f2d28f7e">Language::getLetterSet</a></div><div class="ttdeci">std::string getLetterSet() const </div><div class="ttdoc">Query the full set of available letters (without repetitions) in a given language. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00084">language.cpp:84</a></div></div>
+<div class="ttc" id="classLanguage_html_a677a05e98da32c5c54b6bf6343f80e21"><div class="ttname"><a href="classLanguage.html#a677a05e98da32c5c54b6bf6343f80e21">Language::query</a></div><div class="ttdeci">bool query(std::string word) const </div><div class="ttdoc">Query if a given word exists in the given language. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00061">language.cpp:61</a></div></div>
+<div class="ttc" id="classLanguage_html_a09448361f9188bceaaeebc5576cd6896"><div class="ttname"><a href="classLanguage.html#a09448361f9188bceaaeebc5576cd6896">Language::Language</a></div><div class="ttdeci">Language()</div><div class="ttdoc">Basic constructor and initializer. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00017">language.cpp:17</a></div></div>
+<div class="ttc" id="classLanguage_html"><div class="ttname"><a href="classLanguage.html">Language</a></div><div class="ttdoc">Class fully implemented. It is used to store and manage all the details concerning a given language...</div><div class="ttdef"><b>Definition:</b> <a href="language_8h_source.html#l00027">language.h:27</a></div></div>
+<div class="ttc" id="classLanguage_html_a39a391f8edca1cbdfeea606d968f2c4a"><div class="ttname"><a href="classLanguage.html#a39a391f8edca1cbdfeea606d968f2c4a">Language::getFrequency</a></div><div class="ttdeci">int getFrequency(char letter) const </div><div class="ttdoc">Query the frecuency of appearance in Scrabble of the given letter, according to the chosen language...</div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00069">language.cpp:69</a></div></div>
+<div class="ttc" id="classLanguage_html_ac78d5ca1b8305425b3343b53dca48b25"><div class="ttname"><a href="classLanguage.html#ac78d5ca1b8305425b3343b53dca48b25">Language::getLanguage</a></div><div class="ttdeci">std::string getLanguage() const </div><div class="ttdoc">Returns the ISO690 identifier of the language. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00065">language.cpp:65</a></div></div>
+<div class="ttc" id="classLanguage_html_aa750e6f524fc6a51d0ef82dee5826fbf"><div class="ttname"><a href="classLanguage.html#aa750e6f524fc6a51d0ef82dee5826fbf">Language::getScore</a></div><div class="ttdeci">int getScore(char letter) const </div><div class="ttdoc">Query the score in Scrabble of the given letter, according to the chosen language. </div><div class="ttdef"><b>Definition:</b> <a href="language_8cpp_source.html#l00076">language.cpp:76</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
