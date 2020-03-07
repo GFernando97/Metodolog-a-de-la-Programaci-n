@@ -41,7 +41,7 @@ int main() {
     cout << "TYPE SEED (<0 RANDOM): ";
     cin >> random; /// @warning Read random and define bag
     if (random >= 0)
-    //    bag.setRandom(random);
+        bag.setRandom(random);
     
     /// @warning  define bag 
 

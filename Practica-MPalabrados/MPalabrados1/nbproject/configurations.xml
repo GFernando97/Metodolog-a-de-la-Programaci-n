@@ -15,9 +15,9 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
-        <itemPath>../local/lib/libansiterminal.a</itemPath>
+        <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a</itemPath>
         <itemPath>../local/lib/liblanguage.a</itemPath>
-        <itemPath>../local/lib/libwordlist.a</itemPath>
+        <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libwordlist.a</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -56,6 +56,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <standard>8</standard>
           <incDir>
             <pElem>include</pElem>
             <pElem>../local/include</pElem>
@@ -63,9 +64,9 @@
         </ccTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibLibItem>wordlist</linkerLibLibItem>
             <linkerLibLibItem>ansiterminal</linkerLibLibItem>
             <linkerLibLibItem>language</linkerLibLibItem>
+            <linkerLibLibItem>wordlist</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -75,11 +76,17 @@
       </item>
       <item path="../local/include/wordlist.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/libansiterminal.a" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../local/lib/liblanguage.a" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/libwordlist.a" ex="false" tool="3" flavor2="0">
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libwordlist.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/bag.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -114,11 +121,17 @@
       </item>
       <item path="../local/include/wordlist.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/libansiterminal.a" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../local/lib/liblanguage.a" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/libwordlist.a" ex="false" tool="3" flavor2="0">
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libwordlist.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/bag.h" ex="false" tool="3" flavor2="0">
       </item>

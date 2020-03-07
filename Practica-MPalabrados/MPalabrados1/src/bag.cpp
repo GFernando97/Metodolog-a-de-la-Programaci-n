@@ -3,15 +3,10 @@
  * @author DECSAI
  * @note To be implemented by students except function shuffle()
  */
-#include <cassert>
-#include <random>
-#include <algorithm>
+
 #include "bag.h"
 
-///@warning Fill missing #include
-
-using namespace std;
-
+// Auxiliary functions 
 /**
  * @brief Randomly reorders a vector of char
  * @param s Vector of char
@@ -31,23 +26,42 @@ void shuffleVector(char *s, int n, int id);
  */
 void removeVector(char *s, int &n, int p);
 
+// End of Auxiliaty functions
 
-// Main methods
 
-Bag::Bag() {
+
+Bag::Bag(){
     nletters = 0;
     id = time(NULL);
 }
 
-///@warning Implement all the methods
-void Bag::setRandom(int id){
-    Language::getLetterSet();
+void Bag::define(const Language &l){
+    int i = 0;
+    string aux = l.getLetterSet();
+    string bagValue;
     
-    Language::getFrecuency(char letter);
     
+    while(aux[i] != '\0' ){        
+        for(int j = 0; j < l.getFrequency(aux[i]); j++){
+            bagValue.push_back(aux[i]);
+        }
+        i++;
+    }
     
+    Bag::set(bagValue);
 }
-// Auxiliary functions 
+
+void Bag::set(std::string &s){
+    
+    for(int i = 0; i < s.size(); i++){
+        Bag::set(i, s[i]);
+        nletters++;
+    }
+    shuffleVector(letters, nletters, id);
+}
+
+
+
 
 void shuffleVector(char *s, int n, int id) {
     vector <char> aux(s, s+n);
@@ -57,4 +71,10 @@ void shuffleVector(char *s, int n, int id) {
         s[i] = aux[i];    
 }
 
-
+void removeVector(char *s, int &n, int p){
+    for (int i = p; i < p+n; i++){
+        if(i > p)
+            s[i-1]=s[i];
+    }
+    
+}
