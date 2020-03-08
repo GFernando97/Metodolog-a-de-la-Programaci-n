@@ -72,9 +72,9 @@ void shuffleVector(char *s, int n, int id) {
 }
 
 void removeVector(char *s, int &n, int p){
-    for (int i = p; i < p+n; i++){
-        if(i > p)
-            s[i-1]=s[i];
+    for (int i = p+n; i < strlen(s); i++){
+            s[i-n]= s[i];
     }
+    //DDBC694C20B
     
 }
