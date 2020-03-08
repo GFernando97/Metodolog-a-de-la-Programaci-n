@@ -14,11 +14,9 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <logicalFolder name="lib" displayName="lib" projectFiles="true">
-        <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a</itemPath>
-        <itemPath>../local/lib/liblanguage.a</itemPath>
-        <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libwordlist.a</itemPath>
-      </logicalFolder>
+      <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a</itemPath>
+      <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/liblanguage.a</itemPath>
+      <itemPath>/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libwordlist.a</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -76,9 +74,12 @@
       </item>
       <item path="../local/include/wordlist.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/liblanguage.a" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/liblanguage.a"
             ex="false"
             tool="3"
             flavor2="0">
@@ -121,9 +122,12 @@
       </item>
       <item path="../local/include/wordlist.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../local/lib/liblanguage.a" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/libansiterminal.a"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/reko98/repos/Metodologia-de-la-Programacion/Practica-MPalabrados/local/lib/liblanguage.a"
             ex="false"
             tool="3"
             flavor2="0">

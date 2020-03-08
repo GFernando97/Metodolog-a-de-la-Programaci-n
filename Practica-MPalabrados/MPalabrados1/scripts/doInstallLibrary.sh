@@ -10,10 +10,10 @@ else
 fi
 
 # Copy library's shared files into local directory
-if ls ./dist/Debug/GNU-Linux/*.a;
+if ls  ../dist/Debug/GNU-Linux/*.a;
 then
-    LIBRARY_FILE=$(ls ./dist/Debug/GNU-Linux/*.a)
-    INCLUDE_FILES=$(ls ./include/*.h)
+    LIBRARY_FILE=$(ls  ../dist/Debug/GNU-Linux/*.a)
+    INCLUDE_FILES=$(ls  ../include/*.h)
     echo "Updating $LIBRARY_FILE" 
     cp $LIBRARY_FILE $LOCAL_LIB_FOLDER/
     echo "Updating $INCLUDE_FILES"
