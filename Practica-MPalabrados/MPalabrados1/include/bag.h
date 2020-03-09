@@ -3,19 +3,17 @@
  * @author DECSAI
  * @note To be implemented by students
  */
+
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef BAG_H
 #define BAG_H
 
 #include <string>
-#include <cstring>
-#include <cassert>
-#include <random>
-#include <algorithm>
 #include "language.h"
 
 #define MAXBAG 200		/// Max size of the bag of letters
-
-using namespace std;
 
 ///@warning: Check const methods and parameters
 ///
@@ -41,25 +39,23 @@ private:
 	 * @precond p must be a legal position
 	 * @return The character at the position p (ISO)
 	 */
-	char get(int p)const{return letters[p];}		
+	char get(int p)const;		
 	/**
 	 * @brief Sets the position p of the bag
 	 * @param p The positon requested
 	 * @param c The character to insert (ISO)
 	 * @precond p must be a legal position
 	 */
-	void set(int p, char c){letters[p]=c;}
+	void set(int p, char c);
 public:
 	/**
 	 * @brief Basic constructor and initializer
 	 */
 	Bag();
 	/**
-	 * @brief Sets the value of the id variable of the bag
-         * @param newId new value of the id
-         * @precond newId must be higher or equal than 0
+	 * 
 	 */
-	void setRandom(int newId){id=newId;}
+	void setRandom(int newid);
 	/**
 	 * @brief Define the content of the bag of letters according to 
 	 * the rules of the language. See language.h for more details on how to
@@ -73,17 +69,17 @@ public:
 	 * @brief Size of the letters set that remain in the bag
 	 * @return Number of letters 
 	 */
-	int size() const{return nletters;}
+	int size() const;
 	/**
 	 * @brief Returns the set of letters that remain in the bag
 	 * @return The set of letters
 	 */
-	std::string to_string() const{return letters;}
+	std::string to_string() const;
 	/**
 	 * @brief Define, in one step, the full set of letters in the bag 
 	 * @param s A string that contains all the letters, and their repetitions
 	 */
-	void set( std::string &s);
+	void set(std::string &s);
 	/**
 	 * @brief Extracts the first @p n letters remaining in the bag. If the bag
 	 * contains less than the required @p n letters, it returns all the remaining letters.
@@ -92,6 +88,7 @@ public:
 	 */
 	std::string extract(int n);
 };
+
 
 
 #endif /* BAG_H */

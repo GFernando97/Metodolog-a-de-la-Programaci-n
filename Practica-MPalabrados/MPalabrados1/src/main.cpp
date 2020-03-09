@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @author @warning Fill in your full name
+ * @author Alumno1: Adrián López Castro Alumno2: Fernando Lojano Mayaguari @warning Fill in your full name
  * @note To be implemented by students either completely or by giving them
  * key functions prototipes to guide the implementation
  */
@@ -32,30 +32,49 @@ int main() {
 
     Bag bag;
     string word, lang, result="";
-    int random, count;
+    int random, count=0;
     
     cout << "TYPE LANGUAGE: ";
-    cin >> lang;               ///  Read language
+    cin >> lang;       ///  Read language
     Language language(lang);
     cout << "ALLOWED LETTERS: " << toUTF(language.getLetterSet()) <<endl; /// Show allowed letters
-    cout << "TYPE SEED (<0 RANDOM): ";
-    cin >> random; /// @warning Read random and define bag
-    if (random >= 0)
+    do{
+        cout << "TYPE SEED (<0 RANDOM): ";
+        cin >> random;/// @warning Read random and define bag
         bag.setRandom(random);
+    }while(random < 0 || random >= 200);
     
     /// @warning  define bag 
-
+    bag.define(language);
+    cout<<"BAG"<<" ("<<random<<"-"<<bag.size()<<") :"<<bag.to_string()<<endl;
+    
     /// @warning Extract a 5-letter word from the bag
     /// check whether it is in the dictionary or not
     /// if it is, count a new word, and aggregate the 
     /// word to result ... result = result + word +" - ";
     
+    while(bag.size() > 0){
+        
+        string extraer=bag.extract(5);
+        
+        if(language.query(extraer)==true){
+                
+            cout << extraer << " ***" << endl;
+            result = result + extraer + " - ";
+            count++;
+        }
+        else{
+                
+            cout << extraer << endl;
+        }
+    }
+    
     /// @warning Finish when the bag is empty and show results
     /// thru HallOfFame(...))
-  //  HallOfFame(language,random, bag,count,result);
+    HallOfFame(language,random, bag,count,result);
     return 0;
 }
-/*
+
 void HallOfFame(const Language &l, int random, const Bag &b,  
         int nwords, const string &result) {
     cout << endl <<"%%%OUTPUT" << endl << "LANGUAGE: "<<l.getLanguage()<< " ID: " << random << endl;
@@ -63,5 +82,5 @@ void HallOfFame(const Language &l, int random, const Bag &b,
     cout << nwords << " words found "<<endl << 
             toUTF(result) << endl;    
 }
-*/
+
 

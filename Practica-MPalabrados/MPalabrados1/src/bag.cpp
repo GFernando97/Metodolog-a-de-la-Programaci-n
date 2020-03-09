@@ -3,10 +3,17 @@
  * @author DECSAI
  * @note To be implemented by students except function shuffle()
  */
-
+#include <cassert>
+#include <random>
+#include <algorithm>
 #include "bag.h"
+#include <cstring>
+#include <string>
+#include <iostream>
+///@warning Fill missing #include
 
-// Auxiliary functions 
+using namespace std;
+
 /**
  * @brief Randomly reorders a vector of char
  * @param s Vector of char
@@ -26,42 +33,148 @@ void shuffleVector(char *s, int n, int id);
  */
 void removeVector(char *s, int &n, int p);
 
-// End of Auxiliaty functions
 
+// Main methods
+char Bag::get(int p) const{
+    
+    char getletra;
+    
+    getletra=letters[p];
+    
+    return getletra;
+}
 
+void Bag::set(int p, char c){
+    
+    letters[p]=c;
+}
 
-Bag::Bag(){
+Bag::Bag() {
     nletters = 0;
     id = time(NULL);
 }
 
-void Bag::define(const Language &l){
-    int i = 0;
-    string aux = l.getLetterSet();
-    string bagValue;
+void Bag::setRandom(int newid){
     
+    id=newid;
+}
+
+void Bag::define(const Language& l){
     
-    while(aux[i] != '\0' ){        
-        for(int j = 0; j < l.getFrequency(aux[i]); j++){
-            bagValue.push_back(aux[i]);
+    int i=0,n=0;
+    string letras=l.getLetterSet();
+    
+    while(letras[i]!='\0'){
+        
+        for(int j=n;j<n+l.getFrequency(letras[i]);j++){
+            
+            letters[j]=letras[i];
         }
+        
+        n=n+l.getFrequency(letras[i]);
+        nletters=n;
         i++;
     }
     
-    Bag::set(bagValue);
+    shuffleVector(letters, nletters, id);
+}
+
+int Bag::size() const{
+    
+    return nletters;
+}
+
+std::string Bag::to_string() const{
+    
+    string cadenastring="";
+    
+    for(int i=0;i<nletters;i++){
+        
+        cadenastring=cadenastring+letters[i];
+    }
+    
+    return cadenastring;
 }
 
 void Bag::set(std::string &s){
     
-    for(int i = 0; i < s.size(); i++){
-        Bag::set(i, s[i]);
-        nletters++;
+    char cadena[200];
+    int i=0,numero=0;
+    
+    while(s[i]!='\0'){
+        
+        numero++;
+        i++;
     }
-    shuffleVector(letters, nletters, id);
+    
+    if(numero >0 && numero <= 200){
+        
+        strcpy(cadena,s.c_str());
+        nletters=strlen(cadena);
+    
+        for(int i=0;i<nletters;i++){
+        
+            letters[i]=cadena[i];
+        }
+    }
+    else{
+        
+        nletters = 0;
+        id = time(NULL);
+    }
 }
 
+std::string Bag::extract(int n){
+    
+    string cadenastring="";
+    
+    if(n<=nletters && n>0){
+       
+        for(int i=0;i<n;i++){
+        
+            cadenastring=cadenastring+letters[i];
+        }
+        
+        for(int i=0;i<n;i++){
+            
+            for(int j=0;j<nletters-1;j++){
+                
+                letters[j]=letters[j+1];
+            }
+            
+            nletters--;
+        }
+        
+    }
+    else if(n>nletters){
+        
+        int rep=nletters;
+        
+        for(int i=0;i<nletters;i++){
+            
+            cadenastring=cadenastring+letters[i];
+        }
+        
+        for(int i=0;i<rep;i++){
+            
+            for(int j=0;j<nletters-1;j++){
+                
+                letters[j]=letters[j+1];
+            }
+            
+            nletters--;
+        }
+    }
+    else if(n<=0){
+        
+        cadenastring=cadenastring;
+    }
+    
+    return cadenastring;
+}
+///@warning Implement all the methods
 
-
+// Auxiliary functions 
 
 void shuffleVector(char *s, int n, int id) {
     vector <char> aux(s, s+n);
@@ -72,9 +185,9 @@ void shuffleVector(char *s, int n, int id) {
 }
 
 void removeVector(char *s, int &n, int p){
+    
     for (int i = p+n; i < strlen(s); i++){
             s[i-n]= s[i];
     }
-    //DDBC694C20B
-    
+	nletters = nletters-n;
 }
