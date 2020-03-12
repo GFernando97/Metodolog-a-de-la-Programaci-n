@@ -186,8 +186,8 @@ void shuffleVector(char *s, int n, int id) {
 
 void removeVector(char *s, int &n, int p){
     
-    for (int i = p+n; i < strlen(s); i++){
+    for (int i = p; i < n-1; i++){
             s[i-n]= s[i];
     }
-	nletters = nletters-n;
+    n--;
 }

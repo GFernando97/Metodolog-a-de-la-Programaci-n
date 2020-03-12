@@ -53,6 +53,8 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>../local/include</pElem>
             <pElem>include</pElem>
@@ -60,9 +62,9 @@
         </ccTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibLibItem>ansiterminal</linkerLibLibItem>
-            <linkerLibLibItem>language</linkerLibLibItem>
-            <linkerLibLibItem>wordlist</linkerLibLibItem>
+            <linkerLibFileItem>../local/lib/libansiterminal.a</linkerLibFileItem>
+            <linkerLibFileItem>../local/lib/liblanguage.a</linkerLibFileItem>
+            <linkerLibFileItem>../local/lib/libwordlist.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
