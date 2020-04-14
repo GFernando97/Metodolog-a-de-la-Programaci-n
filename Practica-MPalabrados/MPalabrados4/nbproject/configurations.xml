@@ -10,6 +10,7 @@
         <itemPath>../local/include/language.h</itemPath>
         <itemPath>include/mi_random.h</itemPath>
         <itemPath>include/move.h</itemPath>
+        <itemPath>include/movelist.h</itemPath>
         <itemPath>include/player.h</itemPath>
         <itemPath>../local/include/wordlist.h</itemPath>
       </logicalFolder>
@@ -37,6 +38,7 @@
         <itemPath>src/bag.cpp</itemPath>
         <itemPath>src/main.cpp</itemPath>
         <itemPath>src/move.cpp</itemPath>
+        <itemPath>src/movelist.cpp</itemPath>
         <itemPath>src/player.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -108,6 +110,8 @@
       </item>
       <item path="include/move.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/movelist.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
@@ -127,6 +131,8 @@
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/move.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/movelist.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/player.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -163,6 +169,8 @@
       </item>
       <item path="include/move.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/movelist.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
@@ -182,6 +190,8 @@
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/move.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/movelist.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/player.cpp" ex="false" tool="1" flavor2="0">
       </item>
