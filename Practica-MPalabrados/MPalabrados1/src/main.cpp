@@ -1,86 +1,114 @@
 /**
  * @file main.cpp
- * @author Alumno1: Adrián López Castro Alumno2: Fernando Lojano Mayaguari @warning Fill in your full name
+ * @author DECSAI
  * @note To be implemented by students either completely or by giving them
  * key functions prototipes to guide the implementation
  */
 
+#include <string>
+#include <cstring>
 #include <iostream>
-#include "bag.h"
 #include "language.h"
-///@warning Fill missing #include
+#include "bag.h"
+#include "player.h"
+///@warning complete missing #includes
 
 using namespace std;
-
-
 /**
- * @brief Shows final data in a form detectable by autovalidation scripts
+ * @brief Shows final data
  * @param l Language
  * @param random Random seed
  * @param b Final bag
+ * @param p Final player
  * @param nwords Number of words found
+ * @param score Number of letters found
  * @param result Aggregation of all valid words found
  */
-void HallOfFame(const Language &l, int random, const Bag &b,
-        int nwords, const string &result);
+void HallOfFame(const Language &l, int random, const Bag &b, const Player &p, 
+        int nwords, int score, const string &result);
 
 /**
  * @brief Main function. 
  * @return 
  */
 int main() {
-
-    Bag bag;
-    string word, lang, result="";
-    int random, count=0;
+    int Id;             /// To be used in bag.setRandom())
+    Bag bag;            /// Bag of letters
+    Player player;      /// Player set of letters
+    Language language;  /// Language to be loaded from disk
+    string result="",lang,word="AB";      /// String that contains all the words found
+    int nletters=0,          /// Number of letters found
+        nwords=0;          /// Number of words found
     
     cout << "TYPE LANGUAGE: ";
-    cin >> lang;       ///  Read language
-    Language language(lang);
-    cout << "ALLOWED LETTERS: " << toUTF(language.getLetterSet()) <<endl; /// Show allowed letters
-    do{
-        cout << "TYPE SEED (<0 RANDOM): ";
-        cin >> random;/// @warning Read random and define bag
-        bag.setRandom(random);
-    }while(random < 0 || random >= 200);
+    cin >> lang;
+    language.setLanguage(lang);
+    cout << "ALLOWED LETTERS: " << toUTF(language.getLetterSet()) <<endl;
+    cout << "TYPE SEED (<0 RANDOM): ";
+    cin >> Id;
+    if (Id >= 0)
+        bag.setRandom(Id);
     
-    /// @warning  define bag 
     bag.define(language);
-    cout<<"BAG"<<" ("<<random<<"-"<<bag.size()<<") :"<<bag.to_string()<<endl;
+    cout<<"BAG"<<" ("<<Id<<"-"<<bag.size()<<") :"<<bag.to_string()<<endl<<endl;
     
-    /// @warning Extract a 5-letter word from the bag
-    /// check whether it is in the dictionary or not
-    /// if it is, count a new word, and aggregate the 
-    /// word to result ... result = result + word +" - ";
     
-    while(bag.size() > 0){
+    while(bag.size() > 0 && word.size() >= 2){
         
-        string extraer=bag.extract(5);
+        string extraer=bag.extract(7-player.size());
         
-        if(language.query(extraer)==true){
+        player.add(extraer);
+        
+        do{
+            cout<<"PLAYER: "<<player.to_string()<<" BAG"<<"("<<bag.size()<<")"<<endl;
+            
+            cout<<"INPUT A WORD:"; 
+            cin>>word;
+            
+            cout<<endl;
+            
+            if(word.size() >= 2){
+            
+                if(player.isValid(word)==false){
                 
-            cout << extraer << " ***" << endl;
-            result = result + extraer + " - ";
-            count++;
-        }
-        else{
+                    cout<<word<<" INVALID!"<<endl<<endl;;
+                }
+                else{
                 
-            cout << extraer << endl;
-        }
+                    if(language.query(word)==true){
+                    
+                        cout<<word<<" FOUND!"<<endl<<endl;                    
+                        nwords++;
+                        nletters = nletters + word.size();
+                        result = result + word + " - ";
+                    }
+                    else{
+                    
+                        cout<<word<<" NOT REGISTERED!"<<endl<<endl;
+                    }
+                
+                    player.extract(word);
+                }
+            }
+            
+        }while(player.isValid(word)==true && word.size() >= 2);
     }
     
-    /// @warning Finish when the bag is empty and show results
-    /// thru HallOfFame(...))
-    HallOfFame(language,random, bag,count,result);
+    /// @warning; complete code
+    HallOfFame(language,Id,bag,player, nwords, nletters, result);
     return 0;
 }
 
-void HallOfFame(const Language &l, int random, const Bag &b,  
-        int nwords, const string &result) {
-    cout << endl <<"%%%OUTPUT" << endl << "LANGUAGE: "<<l.getLanguage()<< " ID: " << random << endl;
-    cout << "BAG ("<<b.size()<<"): " << toUTF(b.to_string()) << endl;
-    cout << nwords << " words found "<<endl << 
-            toUTF(result) << endl;    
+string bestAdvice(const string & s, const Language &l)  {
+    
 }
 
+void HallOfFame(const Language &l, int random, const Bag &b, const Player &p, 
+        int nwords, int score, const string &result) {
+    cout << endl << "LANGUAGE: "<<l.getLanguage()<< " ID: " << random << endl;
+    cout << "BAG ("<<b.size()<<"): " << toUTF(b.to_string()) << endl;
+    cout << "PLAYER (" <<p.size() << "): " << toUTF(p.to_string())<<endl;
+    cout << nwords << " words and " << score << " letters "<<endl << 
+            toUTF(result) << endl;    
+}
 

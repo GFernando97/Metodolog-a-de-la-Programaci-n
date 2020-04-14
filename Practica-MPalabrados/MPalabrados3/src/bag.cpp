@@ -168,11 +168,9 @@ std::string Bag::extract(int n){
 // Auxiliary functions 
 
 void shuffleVector(char *s, int n, int id) {
-    vector <char> aux(s, s+n);
     //std::shuffle(aux.begin(), aux.end(), std::default_random_engine(id));
-    shuffle(aux.begin(), aux.end(), mi_random(id));
-    for (int i=0; i<n; i++)
-        s[i] = aux[i];    
+    mi_shuffle(s, s+n, mi_random(id));
+
 }
 
 void removeVector(char *s, int &n, int p){

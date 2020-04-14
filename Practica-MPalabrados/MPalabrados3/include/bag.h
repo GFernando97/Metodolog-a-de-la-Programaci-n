@@ -12,7 +12,6 @@
 
 #include <string>
 #include "language.h"
-#include "mi_random.h"
 
 #define MAXBAG 200		/// Max size of the bag of letters
 

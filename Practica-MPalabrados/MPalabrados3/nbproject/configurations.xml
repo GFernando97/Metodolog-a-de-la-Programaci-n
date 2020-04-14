@@ -9,6 +9,7 @@
         <itemPath>include/bag.h</itemPath>
         <itemPath>../local/include/language.h</itemPath>
         <itemPath>include/mi_random.h</itemPath>
+        <itemPath>include/move.h</itemPath>
         <itemPath>include/player.h</itemPath>
         <itemPath>../local/include/wordlist.h</itemPath>
       </logicalFolder>
@@ -19,12 +20,23 @@
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
       </logicalFolder>
     </logicalFolder>
+    <logicalFolder name="f1" displayName="scripts" projectFiles="true" kind="ROOT">
+      <logicalFolder name="scripts" displayName="scripts" projectFiles="true">
+        <itemPath>scripts/doConfig.sh</itemPath>
+        <itemPath>scripts/doDoxygen.sh</itemPath>
+        <itemPath>scripts/doInstallLibrary.sh</itemPath>
+        <itemPath>scripts/doTests.sh</itemPath>
+        <itemPath>scripts/doUpdate.sh</itemPath>
+        <itemPath>scripts/doZipProject.sh</itemPath>
+      </logicalFolder>
+    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="src" displayName="src" projectFiles="true">
         <itemPath>src/bag.cpp</itemPath>
         <itemPath>src/main.cpp</itemPath>
+        <itemPath>src/move.cpp</itemPath>
         <itemPath>src/player.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -45,6 +57,7 @@
     <Elem>../local/include</Elem>
     <Elem>../local/lib</Elem>
     <Elem>src</Elem>
+    <Elem>scripts</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -77,15 +90,43 @@
       </item>
       <item path="../local/include/wordlist.h" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles">
+        <cTool>
+          <incDir>
+            <pElem>tests</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>tests</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <item path="include/bag.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/mi_random.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/move.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doDoxygen.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doInstallLibrary.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doTests.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doUpdate.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doZipProject.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bag.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/move.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/player.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -120,11 +161,27 @@
       </item>
       <item path="include/mi_random.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/move.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doDoxygen.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doInstallLibrary.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doTests.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doUpdate.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scripts/doZipProject.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bag.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/move.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/player.cpp" ex="false" tool="1" flavor2="0">
       </item>
