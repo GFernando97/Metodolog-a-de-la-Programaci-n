@@ -5,6 +5,11 @@
  * @warning Review data types, consts and references
  */
 
+
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
+
 #ifndef MOVELIST_H
 #define MOVELIST_H
 
@@ -46,13 +51,13 @@ public:
 	 * @brief Constructor for @p n number of movements
 	 * @param nmov Number of movements to store
 	 */
-	Movelist(nmov);
+	Movelist(int nmov);
 
 	/**
 	 * @brief Copy constructor
 	 * @param orig The list of movements to be copied
 	 */
-	Movelist(orig); 
+	Movelist(const Movelist &orig); 
 
 	/**
 	 * @brief Destructor
@@ -79,7 +84,7 @@ public:
 	 * @precond @p p must be in the interval [0, size()) otherwise, it throws an exception
 	 * @return A copy of the movement in the position p.
 	 */
-	 get(int p);
+	Move get(int p)const;
 
 	/**
 	 * @brief Inserts a new movement in the (already existing) position of the set of movements
@@ -87,38 +92,38 @@ public:
 	 * @precond @p p must be in the interval [0, size()) otherwise, it throws an exception
 	 * @param m The movement to insert
 	 */
-	set(p, m);
+	void set(int p, Move &m);
 
 	/**
 	 * @brief Query the number of existing movements in the class 
 	 * @return The size of the set of movements
 	 */
-	inline size() { };
+	inline size()const { };
 
 	/**
 	 * @brief Searches a movement in the set of recorded movements. Two movements are equal if all their data members coincide.
 	 * @param mov The movement to be seeked
 	 * @return The position of the movement in the set, @retval -1 when the movement is not found
 	 */
-	find(mov);
+	int find(const Move &mov)const;
 
 	/**
 	 * @brief Adds a copy of the movement at the end of the existing set, incrementing its size in one more movement
 	 * @param mov The new movement
 	 */
-	add(mov);
+	void add(Move mov);
 	/**
 	 * @brief Remove the movement from the list and reduces the size in one less movement. If the specified movement
 	 * does not exist, the method does nothing 
 	 * @param mov The movement to be removed
 	 */
-	remove(mov);
+	void remove(Move &mov);
 	/**
 	 * @brief Remove the movement stored in the position p and reduces the size in one less movement.
 	 * @param p The position to be removed
 	 * @precond @p p must be in the interval [0, size()) otherwise, it throws an exception
 	 */
-	remove(p);
+	void remove(int p);
 	/**
 	 *	@brief Removes all the movements that contain a word that does not have at least 2 letters
 	 * or that does not exist in the given language 

@@ -6,7 +6,97 @@
  *  */
 #include <iostream>
 
+#include "movelist.h"
+
 using namespace std;
+
+
+void Movelist::allocate(int n){
+    if (n!= nMove){
+        Move* nPuntero = new Move[n];
+        
+    delete []moves;
+    moves = nPuntero;
+    nMove = n;       
+    }  
+}
+
+void Movelist::deallocate(){
+    if(nMove!=0){
+        delete [] moves;
+        nMove = 0;
+    }
+}
+
+void Movelist::copy(const Movelist& ml){
+    
+}
+
+Movelist::Movelist(){
+    nMove = 0;
+}
+
+Movelist::Movelist(int nmov){
+    
+    allocate(nmov);
+}
+
+Movelist::Movelist(const Movelist &orig){
+    copy(orig);
+}
+
+Movelist::~Movelist(){
+    deallocate();
+}
+
+void Movelist::assign(const Movelist& orig){
+    
+}
+
+Move Movelist::get(int p)const{
+    return *moves[p];
+}
+
+void Movelist::set(int p, Move &m){
+    moves[p] = &m;
+    
+}
+
+int Movelist::find(const Move &mov) const{
+    for(int i = 0; i < nMove; i++){
+        if(get(i) == mov)
+            return i;
+    }
+    
+    return -1;
+    
+}
+
+
+
+void Movelist::add(Move mov){
+    Move* mAux = new Move[nMove+1];
+    
+    for(int i = 0; i < nMove; i++)
+        mAux[i] = moves[i];
+    
+    mAux[nMove] = mov;
+    
+    deallocate();
+    allocate(nMove+1);
+    copy(mAux);
+    
+}
+
+void Movelist::remove(Move &mov){
+    if(find(mov)!= -1)
+        remove(find(mov));
+    
+}
+
+void Movelist::remove(int p){
+    
+}
 
 
 bool Movelist::print(std::ostream &os, bool scores) const {
