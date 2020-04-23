@@ -98,7 +98,7 @@ public:
 	 * @brief Query the number of existing movements in the class 
 	 * @return The size of the set of movements
 	 */
-	inline size()const { };
+	inline int size()const { return nMove;}
 
 	/**
 	 * @brief Searches a movement in the set of recorded movements. Two movements are equal if all their data members coincide.
@@ -129,12 +129,12 @@ public:
 	 * or that does not exist in the given language 
 	 * @param l The language 
 	 */
-	zip(l);
+	void zip(Language l);
 
 	/**
 	 * @brief Resets the set and leaves it empty 
 	 */
-   clear();
+        void clear();
 	/**
 	 * @brief Computes the whole score of the list of movements by adding the individual scores of each movement contained in the set
 	 * of movements. It does not need the language to compute the scores because this is done inside each movement. 
@@ -142,7 +142,7 @@ public:
 	 * the full list of movements will score -1.
 	 * @return The score of the full set of movements
 	 */
-	getScore();
+	int getScore();
 	/**
 	 * @brief Insert the data of the list of movements into an ostream (either cout or file)
 	 * @param os The ostream
