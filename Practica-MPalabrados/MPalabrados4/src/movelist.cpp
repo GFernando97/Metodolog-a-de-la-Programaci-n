@@ -12,20 +12,17 @@ using namespace std;
 
 
 void Movelist::allocate(int n){
-    if (n!= nMove){
         Move* nPuntero = new Move [n];
      
         delete []moves;
         moves = nPuntero;
-        nMove = n;       
-    }  
+        nMove = n;        
 }
 
 void Movelist::deallocate(){
-    if(nMove!=0){
         delete [] moves;
         nMove = 0;
-    }
+
 }
 
 
@@ -33,6 +30,8 @@ void Movelist::deallocate(){
 void Movelist::copy(const Movelist& ml){
 
     this->nMove = ml.size();
+    deallocate();
+    allocate(nMove);
 
     for(int i = 0; i < nMove; i++)
         this->moves[i] = ml.moves[i];
@@ -46,7 +45,7 @@ Movelist::Movelist(){
 }
 
 Movelist::Movelist(int nmov){
-    
+    nMove = nmov;
     allocate(nmov);
 }
 
@@ -64,6 +63,15 @@ Movelist::~Movelist(){
 
 ///FALTAAAA!!!
 void Movelist::assign(const Movelist& orig){
+   
+    this->nMove = orig.size();
+    this->allocate(orig.size());
+    
+    
+    for(int i = 0; i < nMove; i++){
+        this->moves[i] = orig.moves[i];
+    }
+    
     
 }
 
@@ -92,18 +100,20 @@ int Movelist::find( const Move &mov) const{
 
 
 
-void Movelist::add(Move mov){
-   
-    Move* mAux = new Move[nMove+1];
+void Movelist::add(Move &mov){
+    int nuevoNMove = nMove+1;
     
-    for(int i = 0; i < nMove; i++)
-        mAux[i] = moves[i];
+    Movelist mAux;
+    mAux.allocate(nuevoNMove);
     
-    mAux[nMove] = mov;
+    if(nMove > 0){
+        for(int i = 0; i < nMove; i++){
+            mAux.set(i, moves[i]);
+        }
+    }
     
-    deallocate();
-    allocate(nMove+1);
-    moves = mAux;
+    mAux.set(nuevoNMove-1, mov);
+    assign(mAux);
     
 }
 
@@ -127,16 +137,20 @@ void Movelist::remove(int p){
         }
     }
     
-    deallocate();
     allocate(newNMoves);
     moves = mAux;
     
 }
 
 void Movelist::zip(Language l){
+    
     for(int i = 0; i < nMove; i++){
-        if(l.query(get(i).getLetters())){
-            this->remove(i);
+        string letras = get(i).getLetters();
+
+        if(!l.query(letras)){
+            remove(i);
+                    cout << "Entra aqui" << endl;
+
         }
     }
     
@@ -151,11 +165,12 @@ void Movelist::clear(){
 
 
 
-int Movelist::getScore(){
+int Movelist::getScore()const{
     int totalScore = 0;
     for(int i = 0; i < nMove; i++){
-        if(get(i).getScore() != -1)
+        if(get(i).getScore() != -1){
             totalScore += get(i).getScore();
+        }
         
         else return -1;  
     }
@@ -180,11 +195,31 @@ bool Movelist::print(std::ostream &os, bool scores) const {
 
 //FALTAAAAAAA
 bool Movelist::read(std::istream& is){
-    Move aux;
-    aux.read(is);
-    add(aux);
+    string finalizador = normalizeWord("@");
+    int lectura = 0;
+    bool finalizadorEncontrado = false;
     
-    return true;
+    do{
+        lectura++;
+        cout << "Lectura numero: " << lectura << endl;
+        Move aux;
+
+        aux.read(is);
+        string letrasMov = aux.getLetters();
+        size_t found = aux.getLetters().find(finalizador);
+
+        if ((found!=std::string::npos) and (letrasMov.size()==1)){
+            finalizadorEncontrado=true;
+        }
+        
+        else if((!finalizadorEncontrado) and (letrasMov.size() < 1)){
+            return false;
+        }
+        
+        else add(aux);
+    }while(!finalizadorEncontrado );
+
+return finalizadorEncontrado;
     
 }
 

@@ -98,7 +98,7 @@ public:
 	 * @brief Query the number of existing movements in the class 
 	 * @return The size of the set of movements
 	 */
-	inline int size()const { return nMove;}
+	int size()const { return nMove;}
 
 	/**
 	 * @brief Searches a movement in the set of recorded movements. Two movements are equal if all their data members coincide.
@@ -111,7 +111,7 @@ public:
 	 * @brief Adds a copy of the movement at the end of the existing set, incrementing its size in one more movement
 	 * @param mov The new movement
 	 */
-	void add(Move mov);
+	void add(Move &mov);
 	/**
 	 * @brief Remove the movement from the list and reduces the size in one less movement. If the specified movement
 	 * does not exist, the method does nothing 
@@ -142,7 +142,7 @@ public:
 	 * the full list of movements will score -1.
 	 * @return The score of the full set of movements
 	 */
-	int getScore();
+	int getScore()const;
 	/**
 	 * @brief Insert the data of the list of movements into an ostream (either cout or file)
 	 * @param os The ostream

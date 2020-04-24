@@ -114,3 +114,59 @@ public:
 	void read(std::istream &is);
 };
 #endif /* MOVE_H */
+
+
+
+/*
+ * 
+ * *
+1. El main() recibe como parámetros obligatorios "-l <ID>" y
+"-p <playfile>" y como parámetro opcional "-r <random>" ,
+en cualquier orden entre los tres. En este caso, el parámetro
+"-p" hace referencia a una partida guardada, la cual, por aho-
+ra, sólo tiene los movimientos. Si se especifica "-r" se define
+el aleatorio con el número indicado, si no, no se define aleatorio.
+ * 
+2. Crear una instancia de la clase Language con el anterior ID y
+mostrar el conjunto de caracteres permitido para ese lenguaje.
+ * 
+3. Crear una instancia de la clase Bag, inicializar el generador de
+números aleatorios con el número aleatorio anterior, si es que
+se ha indicado, y definir su contenido en base al lenguaje que
+se ha declarado anteriormente.
+ * 
+4. Crear una instancia de la clase Player y llenarla por comple-
+to con caracteres de la bolsa. Este objeto player deberá estar
+siempre ordenado de la A a la Z.
+ * 
+5. Crear una instancia de la clase bf Movelist llamada original
+y leer todos los movimientos desde el fichero indicado en el
+parámetro -p usando el método read(...)
+ * 
+6. Crear una instancia de Movelist llamada legal que contenga
+sólo los movimientos de original que están en el diccionario
+del lenguaje elegido. Usar, para ello, el método zip(...)
+ * 
+7. Crear dos instancias adicionales de Movelist y llamarlas accepted
+y rejected
+ * 
+8. Recorrer toda la lista de movimientos leı́da y, por cada uno de
+ellos.
+a) Si el movimiento está en el diccionario, añadir la palabra a
+la lista accepted , marcarla, calcular su puntuación, según
+el idioma, y mostrarlo en la pantalla.
+b) En otro caso añadirla a la lista rejected y marcarla.
+c) Todos estos mensajes en pantalla no afectan a la validación
+de la práctica, ası́ que el alumno puede implementarlas a
+su propio parecer.
+ * 
+9. Terminar con la llamada a HallOfFame para visualizar los re-
+sultados. Esta llamada es la que se utilizará para validar los
+datos.
+ * 
+10. Si en cualquier momento se presenta un error en los argumen-
+tos, en la apertura de ficheros o en la lectura de datos del fiche-
+ro, se debe usar la función errorBreak(...) para notificar el error
+y parar el programa.
+*/
+ 
