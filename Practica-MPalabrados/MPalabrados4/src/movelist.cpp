@@ -28,6 +28,8 @@ void Movelist::deallocate(){
     }
 }
 
+
+//REVISAR!!!!!
 void Movelist::copy(const Movelist& ml){
 
     this->nMove = ml.size();
@@ -56,6 +58,9 @@ Movelist::~Movelist(){
     deallocate();
 }
 
+
+
+///FALTAAAA!!!
 void Movelist::assign(const Movelist& orig){
     
 }
@@ -107,16 +112,21 @@ void Movelist::remove(Move &mov){
 }
 
 void Movelist::remove(int p){
-    
-    Move* mAux = new Move[nMove-1];
+    int newNMoves = nMove-1;
+    Move* mAux = new Move[newNMoves];
     
     for(int i = 0; i < nMove; i++){
-        if(i != p)
-            mAux[i] = moves[i];
+        if(i==p){
+            while(i < nMove-1){
+                mAux[i]=moves[i+1];
+                i++;
+            }
+        break;
+        }
     }
     
     deallocate();
-    allocate(nMove+1);
+    allocate(newNMoves);
     moves = mAux;
     
 }
@@ -137,9 +147,18 @@ void Movelist::clear(){
     }
 }
 
+
+///FALTAAAAAAAAAA
 int Movelist::getScore(){
-    return 0;
+    int totalScore = 0;
+    for(int i = 0; i < nMove; i++){
+        if(get(i).getScore() != -1)
+            totalScore += get(i).getScore();
+        
+        else return -1;  
+    }
     
+    return totalScore;
 }
 
 bool Movelist::print(std::ostream &os, bool scores) const {
@@ -156,8 +175,14 @@ bool Movelist::print(std::ostream &os, bool scores) const {
     return res;
 }
 
+
+//FALTAAAAAAA
 bool Movelist::read(std::istream& is){
-    return false;
+    Move aux;
+    aux.read(is);
+    add(aux);
+    
+    return true;
     
 }
 

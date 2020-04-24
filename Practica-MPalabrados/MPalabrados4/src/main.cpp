@@ -13,6 +13,7 @@
 #include "bag.h"
 #include "move.h"
 #include "player.h"
+#include "movelist.h"
 using namespace std;
 
 
@@ -52,11 +53,15 @@ int main(int nargs, char * args[]) {
     Player player;
     Language language;
     Move move;
+    Movelist movements,        /// Original list of movements
+            legalmovements,    /// Movements with legal words upon the dictionary
+            acceptedmovements, /// Movements accepted in the game
+            rejectedmovements; /// Movements not accepted in the game
     string word="", lang="", goodmoves="", badmoves="", ifilename="", ofilename="";
     int random=-1, nwords=0, score=0;
     ifstream ifile; ofstream ofile;
     istream *input=&cin; ostream *output;
-    bool obligatorio=false, hayfichero=false,arroba=false,haybolsa=false;
+    bool Lobligatorio=false, Pobligatorio = false, hayfichero=false,arroba=false,haybolsa=false;
     int contador=0;
     string fichero="",bolsa="";
     /// @warning: Declare more vars when needed
@@ -80,11 +85,12 @@ int main(int nargs, char * args[]) {
             language.setLanguage(lang);
             cout <<"LANGUAGE: "<<lang<<endl;
             cout << "ALLOWED LETTERS: " << toUTF(language.getLetterSet()) <<endl;
-            obligatorio=true;
+            Lobligatorio=true;
         }
-        else if(parametro == "-i" || parametro == "<"){
-            
-            ifilename=siguienteparametro;
+        
+        else if(parametro == "-p"){
+            Pobligatorio = true;
+             ifilename=siguienteparametro;
             ifile.open(ifilename.c_str());
             
             if(!ifile){
@@ -94,7 +100,10 @@ int main(int nargs, char * args[]) {
             
             input=&ifile;
             hayfichero=true;
+            
+            
         }
+
         else if(parametro == "-r"){
             
             random=stoi(siguienteparametro);
@@ -107,7 +116,7 @@ int main(int nargs, char * args[]) {
     }
     
     
-    if(obligatorio==false){
+    if(!Lobligatorio or !Pobligatorio){
         
         errorBreak(1,"");
     }
