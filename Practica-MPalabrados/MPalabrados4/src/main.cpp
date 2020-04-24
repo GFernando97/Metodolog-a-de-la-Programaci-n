@@ -151,7 +151,8 @@ int main(int nargs, char * args[]) {
         cout<<"PLAYER: "<<player.to_string()<<endl<<endl;
         
         cout<<"READ: ";
-        move.read(*input);
+        movements.read(*input);
+        //move.read(*input);
         
         if(hayfichero){
             

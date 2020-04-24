@@ -50,6 +50,8 @@ Movelist::Movelist(int nmov){
     allocate(nmov);
 }
 
+
+//Revisar!!!!!
 Movelist::Movelist(const Movelist &orig){
     copy(orig);
 }
@@ -148,7 +150,7 @@ void Movelist::clear(){
 }
 
 
-///FALTAAAAAAAAAA
+
 int Movelist::getScore(){
     int totalScore = 0;
     for(int i = 0; i < nMove; i++){
