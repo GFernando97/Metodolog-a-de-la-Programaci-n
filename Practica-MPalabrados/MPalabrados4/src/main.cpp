@@ -150,8 +150,8 @@ int main(int nargs, char * args[]) {
         
         //Crea Lista de movimientos legales en el lenguaje
         legalmovements.assign(movements);
-        legalmovements.zip(language);  
-
+        legalmovements.zip(language); 
+        
         
         for(int i = 0; i < movements.size(); i++){
             string extraer=bag.extract(7-player.size());
@@ -162,33 +162,39 @@ int main(int nargs, char * args[]) {
             
             
             Move aux = movements.get(i);
+            int pos = legalmovements.find(aux);
             string letrasMov = aux.getLetters();
             
-            if(letrasMov.size() > 1){
-                if(player.isValid(letrasMov)){
-                    if(language.query(letrasMov)){
-                        int puntuacion = aux.findScore(language);
-                        aux.setScore(puntuacion);
-                        acceptedmovements.add(aux);
+            //SI LA PALABARA ES VALIDA PARA EL JUGADOR
+            //Y SE ENCUENTRA DENTRO DEL DICCIONARIO DEL LENGUAJE
+            //SE INTRODUCE DENTRO DE LOS MOV ACEPTADOS
+            if(player.isValid(letrasMov)){
+                if(pos != -1){
 
-                        cout <<"FOUND! "<<puntuacion<<" points"<<endl<<endl;
-
-                    }
-                    
-                    else{
-                        cout<<"NOT REGISTERED!"<<endl<<endl;
-
-                    }
-                    
-                    player.extract(letrasMov);
+                    int puntuacion = aux.findScore(language);
+                    aux.setScore(puntuacion);
+                    acceptedmovements.add(aux);
+                    cout <<"WORD " << letrasMov << " FOUND! "<<puntuacion<<" points"<<endl<<endl;
                 }
                 
-                else{
-                    cout<<"INVALID!"<<endl<<endl;
-                    rejectedmovements.add(aux);
+            player.extract(letrasMov);
 
-                }
             }
+            
+            //SI LA PALABRA NO SE ENCUENTRA DENTRO DEL DICCIONARIO
+            //ES  INVALIDA
+            else if(pos == -1){
+                    cout<<"WORD " << letrasMov << "INVALID!"<<endl<<endl;
+            }
+            
+            //SI LA PALABRA SE ENCUENTRA DENRO DEL DICCIONARIO
+            //PERO NO ES VALIDA PARA EL JUGADOR, SE RECHAZA Y
+            //SE INTRODUCE EN MOV REJECTED
+            else  {
+                rejectedmovements.add(aux);
+
+            }
+            
         }
          
     }
@@ -203,7 +209,7 @@ int main(int nargs, char * args[]) {
     HallOfFame(language, random, bag, player, 
             movements, legalmovements, acceptedmovements, rejectedmovements);
     return 0;
-}
+};
 
 void HallOfFame(const Language &l, int random, const Bag &b, const Player &p, 
         const Movelist& original,const Movelist& legal,
@@ -216,7 +222,7 @@ void HallOfFame(const Language &l, int random, const Bag &b, const Player &p,
     cout << endl << endl << "ACCEPTED ("<<accepted.size()<<") SCORE "<<accepted.getScore()<< ": "<<endl; accepted.print(cout);
     cout << endl << endl << "REJECTED ("<<rejected.size()<<"): "<<endl; rejected.print(cout);
     cout << endl;
-}
+};
 
 void errorBreak(int errorcode, const string &errordata) {
     cerr << endl << "%%%OUTPUT" << endl;
@@ -232,4 +238,51 @@ void errorBreak(int errorcode, const string &errordata) {
             break;
     }
     std::exit(1);
-}
+};
+
+
+
+/*
+ * SI PUEDES ECHARLE UN VISTAZO A ESTOS ERRORES Y VER SI SE PUEDEN ARREGLAR.
+ * NO TENGO MUY CLARO DE QUE SALIDAS TENGO QUE DAR EN EL MAIN, DE HECHO
+ * TODOS LOS PROBLEMAS QUE TENGO SON DE ESO, LOS RESULTADOS ME DAN BIEN, PERO LA 
+ * SALIDA NO SE PARECE A LA DE LOS TESTS.
+ * TAMPOCO TENGO MUY CLARO DE SI ESOS SON LOS TEST QUE TENEMOS QUE COMPROBAR, PORQUE
+ * POR EJEMPLO EL 8 ES UN TEST DE LA ENTREGA PASADA, EN ESTA PRÁCTICA NO TENEMOS
+ * EL PARAMETRO -i, SOLO TENEMOS LOS PARAMETROS -r -l y -p Y SIN EMBARGO ESE TEST
+ * TIENE COMO ENTRADA -i. POR ESO DA ERROR.
+ * 
+ * LO QUE SI, NO HAY NADA QUE HACER CON LA CLASE MOVELIST. ESTÁ TERMINADA COMPLETAMENTE
+ * Y FUNCIONA A LA PERFECCIÓN. DE TODAS FORMAS, PUEDES ECHARLE UN VISTAZO
+ * A LO MEJOR ME HE PASADO ALGO.
+ * TODOS LOS PROBLEMAS SE DAN EN EL MAIN. POR ESO ESTOY UN 
+ * POCO PERDIDO....
+ * 
+ * 
+ * HE COMENTADO LAS PARTES QUE CONSIDERO DIFICILES DE LA CLASE MOVELIST, PARA QUE SI 
+ * LE HECHAS UN VISTAZO NO TENGAS DIFICULTAD EN COMPRENDER EL CÓDIGO.
+ * 
+ * 
+ * 
+ EL TEST 7---> ES_12W3.test da una salida completamente 
+  diferente a la que deberia dar HallOfFame
+ * 
+ * 
+ EL TEST 8 ---> ES_17W24.test ni siquiera tiene los argumentos 
+ que se supone que deberíamos pasar como parametro en esta práctica
+ * 
+ * 
+ EL TEST 9 ---> FR_74W7.test me da las soluciones correctas pero la salida que
+ proporciono en el main no es la misma al principo...
+ * 
+ * 
+ LOS TEST DE ERROR DE CALL OPEN Y DATA me dan el mismo resultado de salida que
+ el de los test, pero no me las da por aceptadas....
+ *
+ * 
+ El TEST DE EMPTY me da correcto pero como es mi ordenador el que genera la bolsa
+ de forma aleatoria, pues no genera los mismos que el del test. 
+  
+ 
+ 
+ */

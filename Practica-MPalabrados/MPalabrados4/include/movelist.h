@@ -129,7 +129,7 @@ public:
 	 * or that does not exist in the given language 
 	 * @param l The language 
 	 */
-	void zip(Language l);
+	void zip(Language &l);
 
 	/**
 	 * @brief Resets the set and leaves it empty 
