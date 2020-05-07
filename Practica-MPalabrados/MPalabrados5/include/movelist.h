@@ -163,7 +163,26 @@ public:
 	 * @return True if there was no problem reading data, false otherwise.
 	 */
 	bool read(std::istream &is);
+        
+        
+        /**
+	 * @brief Overloads the assignment operator
+	 * @param orig Right hand side of the assignement
+	 * @return this Left hand side of the assignement
+	 */
+	Movelist& operator=(  Movelist &orig); 
+	/**
+	 * @brief Overload the operator += It is equivalent to add a movement at the end of the set, increasing its size in one more movement
+	 * @param mov The new movement to be inserted
+	 * @return The left hand side of the operator
+	 */
+	Movelist & operator+=(  Move &mov);
+
+	friend std::ostream & operator<<(std::ostream & os,  Movelist  s);
+	friend std::istream & operator>>(std::istream & os, Movelist  s);
 };
+
+
 
 #endif
 

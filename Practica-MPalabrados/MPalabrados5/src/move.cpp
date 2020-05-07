@@ -88,3 +88,26 @@ void Move::read( std::istream &is) {
     set(_row,_column, h, _letters);
 }
 
+
+
+/**
+ * @brief Overload of the insertion operator
+ * @param os Output stream (cout)
+ * @param m The class to be inserted in the stream
+ * @return The output stream (cout)
+ */
+std::ostream& operator<<(std::ostream& os,  const Move &m){
+    m.print(os);
+    return os;
+}
+/**
+ * @brief Overload of the extraction operator
+ * @param os Input stream (cin)
+ * @param m The class to be extracted from the stream
+ * @return The input stream (cin)
+ */
+std::istream& operator>>(std::istream& is, Move  &m){
+    m.read(is);
+    return is;
+}
+

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/include/tiles.o \
 	${OBJECTDIR}/src/bag.o \
 	${OBJECTDIR}/src/main.o \
 	${OBJECTDIR}/src/move.o \
@@ -60,17 +61,22 @@ LDLIBSOPTIONS=../local/lib/libansiterminal.a ../local/lib/liblanguage.a ../local
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4: ../local/lib/libansiterminal.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5: ../local/lib/libansiterminal.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4: ../local/lib/liblanguage.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5: ../local/lib/liblanguage.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4: ../local/lib/libwordlist.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5: ../local/lib/libwordlist.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados4 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/include/tiles.o: include/tiles.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/tiles.o include/tiles.cpp
 
 ${OBJECTDIR}/src/bag.o: src/bag.cpp
 	${MKDIR} -p ${OBJECTDIR}/src

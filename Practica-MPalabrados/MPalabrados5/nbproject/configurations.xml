@@ -12,6 +12,7 @@
         <itemPath>include/move.h</itemPath>
         <itemPath>include/movelist.h</itemPath>
         <itemPath>include/player.h</itemPath>
+        <itemPath>include/tiles.h</itemPath>
         <itemPath>../local/include/wordlist.h</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -40,6 +41,7 @@
         <itemPath>src/move.cpp</itemPath>
         <itemPath>src/movelist.cpp</itemPath>
         <itemPath>src/player.cpp</itemPath>
+        <itemPath>include/tiles.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -114,6 +116,10 @@
       </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/tiles.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/tiles.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="scripts/doDoxygen.sh" ex="false" tool="3" flavor2="0">
@@ -172,6 +178,10 @@
       <item path="include/movelist.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tiles.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/tiles.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="scripts/doConfig.sh" ex="false" tool="3" flavor2="0">
       </item>

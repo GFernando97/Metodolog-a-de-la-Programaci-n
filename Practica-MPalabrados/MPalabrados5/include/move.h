@@ -107,5 +107,12 @@ public:
 	 * @brief Reads from keyboard the values of the class, except score 
 	 */
 	void read( std::istream &is);
+        
+        // Friend functions
+	friend std::ostream& operator<<(std::ostream& os, const Move  &m);
+	friend std::istream& operator>>(std::istream& is, Move  &m);	
 };
+
+
+
 #endif /* MOVE_H */

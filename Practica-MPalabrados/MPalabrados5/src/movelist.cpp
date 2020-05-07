@@ -89,11 +89,6 @@ void Movelist::remove(const Move &mov) {
 }
 
 
-Movelist & Movelist::operator+=(const Move &m) {
-    this->add(m);
-    return *this;
-}
-
 
 void Movelist::clear() {
     deallocate();
@@ -203,4 +198,50 @@ bool Movelist::read(std::istream &is) {
     }
     
     return !fin;
+}
+
+
+
+//Sobrecarga de operadores
+Movelist& Movelist::operator=( Movelist &orig){
+    if (this != &orig) {
+        deallocate();
+        copy(orig);
+    }
+    return *this;
+}
+
+
+Movelist&  Movelist::operator+=( Move &mov){
+    add(mov);
+    return *this;
+}
+
+
+/**
+ * @brief Overload of the insertion operator
+ * @param os Output stream (cout)
+ * @param m The class to be inserted in the stream
+ * @return The output stream (cout)
+ */
+std::ostream & operator<<(std::ostream & os, const Movelist & i){
+    if(i.print(os, false)){
+        return os;
+    }
+    
+    return os;
+}
+
+/**
+ * @brief Overload of the extraction operator
+ * @param os Input stream (cin)
+ * @param m The class to be extracted from the stream
+ * @return The input stream (cin)
+ */
+std::istream & operator>>(std::istream & is, Movelist & i){
+    if(i.read(is)){
+        return is;
+    }
+    
+    return is;
 }
