@@ -16,7 +16,9 @@ using namespace std;
 void Movelist::allocate(int n){
         Move* nPuntero = new Move [n];
      
-        delete []moves;
+        if(moves != nullptr){
+            delete []moves;
+        }
         moves = nPuntero;
         nMove = n;        
 }
@@ -24,8 +26,10 @@ void Movelist::allocate(int n){
 
 //Libera memoria
 void Movelist::deallocate(){
+    if(moves != nullptr){
         delete [] moves;
         nMove = 0;
+    }
 
 }
 
@@ -35,10 +39,12 @@ void Movelist::deallocate(){
 void Movelist::copy(const Movelist& ml){
 
     this->nMove = ml.size();
-    allocate(nMove);
+    this->allocate(ml.size());
 
     for(int i = 0; i < nMove; i++)
         this->moves[i] = ml.moves[i];
+    
+
    
 
 }
@@ -62,8 +68,8 @@ Movelist::Movelist(int nmov){
 
 //Constructor de copia, este simplemente llama al metodo privado copy()
 //copia los datos de un objeto al otro
-Movelist::Movelist(const Movelist &orig){
-    copy(orig);
+Movelist::Movelist(const Movelist& orig){
+    this->copy(orig);
 }
 
 
@@ -90,7 +96,9 @@ void Movelist::assign(const Movelist& orig){
 //queda de la otra forma
 void Movelist::assign(const Movelist& orig){
    
-    this->nMove = orig.size();
+    
+
+   this->nMove = orig.size();
     this->allocate(orig.size());
     
     
@@ -101,6 +109,16 @@ void Movelist::assign(const Movelist& orig){
     
 }
 
+
+/*
+Movelist& Movelist::assign(const Movelist& Orig){
+    if(this != &Orig){
+        copy(Orig);
+    }
+
+    return *this;
+}
+*/
 
 //Obtiene el movimiento que está en la posicion p
 Move Movelist::get(int p)const{

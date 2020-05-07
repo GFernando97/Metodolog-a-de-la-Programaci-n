@@ -57,7 +57,7 @@ public:
 	 * @brief Copy constructor
 	 * @param orig The list of movements to be copied
 	 */
-	Movelist(const Movelist &orig); 
+	Movelist(const Movelist& orig); 
 
 	/**
 	 * @brief Destructor
@@ -70,6 +70,9 @@ public:
 	 */
         
 	void assign (const Movelist& orig); 
+    /*
+        Movelist& assign(const Movelist& Orig);
+     */
 
 	/**
 	 * @brief Overloads the assignment operator

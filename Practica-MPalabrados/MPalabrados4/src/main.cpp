@@ -140,6 +140,8 @@ int main(int nargs, char * args[]) {
 
     cout<<"Reading from "<<ifilename<<endl;
     bool leido = movements.read(*input);
+    
+   
 
     if(!leido){
        errorBreak(3, ifilename);
@@ -149,6 +151,8 @@ int main(int nargs, char * args[]) {
     else{
         
         //Crea Lista de movimientos legales en el lenguaje
+
+        
         legalmovements.assign(movements);
         legalmovements.zip(language); 
         
