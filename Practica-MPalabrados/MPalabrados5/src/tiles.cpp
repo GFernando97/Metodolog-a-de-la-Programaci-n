@@ -67,14 +67,14 @@ int Tiles::getHeight() const{
 }
 
 char Tiles::get(int r, int c) const{
-    assert ((r>=0 and r<getHeight()) and (c >= 0 and c < getWidth()));
-    return cell[r][c];
+    assert ((r>0 and r<=getHeight()) and (c > 0 and c <= getWidth()));
+    return cell[r-1][c-1];
     
 }
 
 void Tiles::set(int r, int c, char l){
-    assert ((r>=0 and r< getHeight()) and (c >= 0 and c < getWidth()));
-    cell[r][c] = l; 
+    assert ((r>0 and r<= getHeight()) and (c > 0 and c <= getWidth()));
+    cell[r-1][c-1] = l; 
 }
 
 void Tiles::add(const Move& m){
