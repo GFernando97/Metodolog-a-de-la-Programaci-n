@@ -11,6 +11,9 @@
  * Created on 9 de marzo de 2020, 9:47
  */
 
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef MI_RANDOM_H
 #define MI_RANDOM_H
 

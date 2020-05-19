@@ -3,111 +3,145 @@
  * @author DECSAI
  * @note To be implemented by students
  */
-
 #include <string>
-#include <iostream>
-#include <fstream>
-#include <cassert>
-#include "language.h"
+
 #include "move.h"
 
 using namespace std;
 
-Move::Move() {
-        row = column = score = -1;
-        letters="";
-        ishorizontal = true;
+Move::Move(){
+    
+    row=0;
+    column=0;
+    ishorizontal=true;
+    letters="";
+    score=0;
 }
 
-void Move::set(int r, int c, char h, const string & l) {
+void Move::set(int r, int c, char h, const std::string& l){
+    
     setRow(r);
     setCol(c);
     setHorizontal(h);
     setLetters(l);
-    //score = -1;
+
 }
 
 void Move::setRow(int r){
-    row = r;
+    
+    row=r;
 }
+
 void Move::setCol(int c){
+    
     column=c;
 }
+
 void Move::setHorizontal(char h){
-    h = toupper(h);
-    ishorizontal = (h == 'H');
+    
+    if(h=='V' || h=='v'){
+        
+        ishorizontal=false;
+    }
+    else{
+        
+        ishorizontal=true;
+    }
 }
+
 void Move::setLetters(const string &l){
     letters = normalizeWord(l);
 }
 
-void Move::setScore(int s) {
-    score = s;
+int Move::findScore(const Language& l) const{
+    
+    int puntos=0;
+    
+    if(l.query(letters)==false){
+        
+        puntos=-1;
+    }
+    else{
+        
+        for(int i = 0; i < letters.size(); i++){
+            
+            puntos = puntos + l.getScore(letters[i]);
+        }
+    }
+    
+    return puntos;
 }
 
-int Move::findScore(const Language &l) {
-    if (l.query(getLetters()))  {
-        score=0;
-        for (int let=0; let<getLetters().size(); let++){
-            score += l.getScore(getLetters()[let]);
-        }
-    } else{
-        score = -1;
-    }
-    return score;
+void Move::setScore(int s){
+    
+    score=s;
 }
 
 int Move::getScore() const{
+    
     return score;
 }
 
-
-int Move::getRow() const {
-        return row;
+int Move::getRow() const{
+    
+    return row;
 }
+
 int Move::getCol() const{
-        return column;
+    
+    return column;
 }
+
 bool Move::isHorizontal() const{
-        return ishorizontal;
-}
-string Move::getLetters() const{
-        return letters;
+    
+    return ishorizontal;
 }
 
-void Move::print( std::ostream &os) const {
-    os << (ishorizontal? 'H':'V')<< " "  << row << " " << column 
-            << " " << toUTF(letters);    
+std::string Move::getLetters() const{
+    
+    return letters;
 }
 
-void Move::read( std::istream &is) {
-    char h;
-    int _row, _column;
-    string _letters;
-    is >> h >> _row >> _column  >> _letters;
-    set(_row,_column, h, _letters);
+void Move::print(std::ostream& os) const{
+    
+    if(ishorizontal){
+        
+        os << "H"<<" ";
+    }
+    else{
+        
+        os << "V"<<" ";
+    }
+    
+    os << row <<" "<< column <<" "<< letters;
+    
 }
 
+void Move::read(std::istream &is) {
 
+  //@warging reading
+  //@ set the others fields of move
+    char horizontal;
+    int fila,columna;
+    string letras="";
+    
+    is>>horizontal;
+    is>>fila;
+    is>>columna;
+    is>>letras;
+    
+    set(fila,columna,horizontal,letras);
+    
+}
 
-/**
- * @brief Overload of the insertion operator
- * @param os Output stream (cout)
- * @param m The class to be inserted in the stream
- * @return The output stream (cout)
- */
 std::ostream& operator<<(std::ostream& os,  const Move &m){
+    
     m.print(os);
     return os;
 }
-/**
- * @brief Overload of the extraction operator
- * @param os Input stream (cin)
- * @param m The class to be extracted from the stream
- * @return The input stream (cin)
- */
-std::istream& operator>>(std::istream& is, Move  &m){
+
+std::istream& operator>>(std::istream& is,  Move  &m){
+    
     m.read(is);
     return is;
 }
-

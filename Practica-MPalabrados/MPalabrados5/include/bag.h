@@ -3,16 +3,20 @@
  * @author DECSAI
  * @note To be implemented by students
  */
+
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef BAG_H
 #define BAG_H
 
 #include <string>
 #include "language.h"
 
-//Alumno1 apellidos11 Apellidos12 nombre1
-//Alumno2 apellidos21 Apellidos22 nombre2
-
 #define MAXBAG 200		/// Max size of the bag of letters
+
+///@warning: Check const methods and parameters
+///
 
 /**
  * @class Bag
@@ -35,7 +39,7 @@ private:
 	 * @precond p must be a legal position
 	 * @return The character at the position p (ISO)
 	 */
-	char get(int p) const;		
+	char get(int p)const;		
 	/**
 	 * @brief Sets the position p of the bag
 	 * @param p The positon requested
@@ -49,11 +53,9 @@ public:
 	 */
 	Bag();
 	/**
-	  * @brief Defines the seed for the random sorting of the bag in each call to method define()
-	  * @param mid An integer. Whenever this number is kept the same, the order of the letters in 
-	  * the bag will also be the same.
-	  */
-	void setRandom(int mid);
+	 * 
+	 */
+	void setRandom(int newid);
 	/**
 	 * @brief Define the content of the bag of letters according to 
 	 * the rules of the language. See language.h for more details on how to
@@ -63,16 +65,6 @@ public:
 	 * @param l The chosen language
 	 */
 	void define(const Language &l);
-        
-        /**
-	 * @brief Define the content of the bag of letters according to 
-	 * the rules of the language. See language.h for more details on how to
-	 * arrange this set of letters.
-	 *		- Language::getLetterSet() returns the set of letters of a given Language
-	 *		- Language::getFrequency(char letter) returns the frequency of a letter, that is, the number of times that each letter appears in the bag  
-	 * @param l The chosen language
-	 */
-	void define2(const Language &l);
 	/**
 	 * @brief Size of the letters set that remain in the bag
 	 * @return Number of letters 
@@ -87,9 +79,9 @@ public:
 	 * @brief Define, in one step, the full set of letters in the bag 
 	 * @param s A string that contains all the letters, and their repetitions
 	 */
-	void set(std::string s);
+	void set(std::string &s);
 	/**
-	 * @brief Extracts the first @p n letters t remaining in the bag. If the bag
+	 * @brief Extracts the first @p n letters remaining in the bag. If the bag
 	 * contains less than the required @p n letters, it returns all the remaining letters.
 	 * @param n Number of letters to extract
 	 * @return The set of the first @p n letters in the bag

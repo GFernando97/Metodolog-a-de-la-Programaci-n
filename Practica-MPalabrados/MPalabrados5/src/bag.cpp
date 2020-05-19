@@ -3,18 +3,17 @@
  * @author DECSAI
  * @note To be implemented by students except function shuffle()
  */
-#include <cstring>
-#include <string>
 #include <cassert>
 #include <random>
-#include <fstream>
 #include <algorithm>
 #include "bag.h"
-#include "language.h"
+#include <cstring>
+#include <string>
+#include <iostream>
 #include "mi_random.h"
-/// See http://www.cplusplus.com/reference/cstring/ for details about cstrings
-using namespace std;
+///@warning Fill missing #include
 
+using namespace std;
 
 /**
  * @brief USING mi_random class. Randomly reorders a vector of char
@@ -25,106 +24,161 @@ using namespace std;
  */
 void shuffleVector(char *s, int n, int id);
 
-
 /**
  * @brief Removes a position from a vector and compacts the remaining positions, 
  * thus reducing its size
  * @param s Vector of char
  * @param n Number of chars
  * @param p Position to remove
- * @warning TO BE IMPLEMENTED
+ * @warning TO BE FULLY IMPLEMENTED. 
+ * @warning Check parameters const/&/* and their types
  */
-void removeVector(char *s, int & n, int p);
+void removeVector(char *s, int &n, int p);
 
+
+// Main methods
+char Bag::get(int p) const{
+    
+    char getletra;
+    
+    getletra=letters[p];
+    
+    return getletra;
+}
+
+void Bag::set(int p, char c){
+    
+    letters[p]=c;
+}
 
 Bag::Bag() {
     nletters = 0;
     id = time(NULL);
 }
 
-void Bag::setRandom(int mid) {
-    id = mid;
+void Bag::setRandom(int newid){
+    
+    id=newid;
 }
-void Bag::define(const Language &l) {
-    string forletters = l.getLetterSet();
-    nletters = 0;
-    for (int i = 0; i < forletters.size(); i++)
-        nletters += l.getFrequency(forletters[i]);  
-    assert(nletters <= MAXBAG); // para comprobar que hay espacio en el vector, sino excepción!
-    for (int k = 0, i = 0; i < forletters.size(); i++)
-        for (int j = 0; j < l.getFrequency(forletters[i]); j++)
-            set(k++, forletters[i]);
+
+void Bag::define(const Language& l){
+    
+    int i=0,n=0;
+    string letras=l.getLetterSet();
+    
+    while(letras[i]!='\0'){
+        
+        for(int j=n;j<n+l.getFrequency(letras[i]);j++){
+            
+            letters[j]=letras[i];
+        }
+        
+        n=n+l.getFrequency(letras[i]);
+        nletters=n;
+        i++;
+    }
+    
     shuffleVector(letters, nletters, id);
 }
 
-
-int Bag::size() const {
+int Bag::size() const{
+    
     return nletters;
 }
 
-string Bag::to_string() const  {
-    string s(nletters,'-');
-    for (int i=0;i <nletters; i++)
-        s[i]=get(i);
-    return s;
-}
-
-void Bag::set(std::string s) {
-    assert(s.size()<=MAXBAG);
-    nletters = s.size();
-    for (int i=0;i<s.size(); i++)
-        set(i,s[i]);
-}
-
-
-string Bag::extract(int n) {
-    string result="";
-    if (n > nletters)
-        n = nletters;
-    for (int i=0; i<n; i++) {
-        result.append(1,get(0));
-        removeVector(letters, nletters, 0);
+std::string Bag::to_string() const{
+    
+    string cadenastring="";
+    
+    for(int i=0;i<nletters;i++){
+        
+        cadenastring=cadenastring+letters[i];
     }
-    return result;
+    
+    return cadenastring;
 }
 
-/// Private
-
-char Bag::get(int p) const {
-    assert (0<=p && p<nletters);
-    return letters[p];
+void Bag::set(std::string &s){
+    
+    char cadena[200];
+    int i=0,numero=0;
+    
+    while(s[i]!='\0'){
+        
+        numero++;
+        i++;
+    }
+    
+    if(numero >0 && numero <= 200){
+        
+        strcpy(cadena,s.c_str());
+        nletters=strlen(cadena);
+    
+        for(int i=0;i<nletters;i++){
+        
+            letters[i]=cadena[i];
+        }
+    }
+    else{
+        
+        nletters = 0;
+        id = time(NULL);
+    }
 }
 
-void Bag::set(int p, char c) {
-    assert (0<=p && p<nletters);
-    letters[p] = c;
+std::string Bag::extract(int n){
+    
+    string cadenastring="";
+    
+    if(n<=nletters && n>0){
+       
+        for(int i=0;i<n;i++){
+        
+            cadenastring=cadenastring+letters[i];
+        }
+
+        for(int i=0;i<n;i++){
+            
+            removeVector(letters,nletters,0); 
+        }
+    }
+    else if(n>nletters){
+        
+        int p=nletters;
+        
+        for(int i=0;i<nletters;i++){
+            
+            cadenastring=cadenastring+letters[i];
+        }
+
+        for(int i=0;i<p;i++){
+            
+            removeVector(letters,nletters,0);
+        }
+    }
+    else if(n<=0){
+        
+        cadenastring=cadenastring;
+    }
+    
+    return cadenastring;
 }
+///@warning Implement all the methods
 
 // Auxiliary functions 
 
-
-/**
- * @brief USING mi_random class. Randomly reorders a vector of char
- * @param s Vector of char
- * @param n Number of char in the vector
- * @param id Seed for the random sorting
- * @author DECSAI
- */
 void shuffleVector(char *s, int n, int id) {
+    //std::shuffle(aux.begin(), aux.end(), std::default_random_engine(id));
     mi_shuffle(s, s+n, mi_random(id));
+
 }
 
-/**
- * @brief Removes a position from a vector and compacts the remaining positions, 
- * thus reducing its size
- * @param s Vector of char
- * @param n Number of chars
- * @param p Position to remove
- */
-void removeVector(char *s, int & n, int p){
-    assert (0<=p && p<n);
-    for (int i=p; i<n-1; i++)
-        s[i] = s[i+1];
-    n--;
+void removeVector(char *s, int &n, int p){
+    
+    for(int i=p;i<n-1;i++){
+        
+        s[i]=s[i+1];
+    }
+    
+    n=n-1;
 }
-

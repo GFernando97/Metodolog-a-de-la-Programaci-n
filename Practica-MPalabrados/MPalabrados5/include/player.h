@@ -4,6 +4,9 @@
  * @note To be implemented by students
  */
 
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
@@ -48,19 +51,19 @@ public:
 	 * @param s The string that is queried
 	 * @return @retval true if the move can be supported by the stored letters, @retval false otherwise
 	 */
-	bool isValid(const std::string & s) const;
+	bool isValid(const std::string &s) const;
 	/**
 	 * @brief Remove the set of letters of the movement, including possible repetitions, from the set of stored letters
 	 * @param m The string that is to be removed
 	 * @return @retval true if the move can be supported by the stored letters, @retval false otherwise
 	 */
-	bool extract(const std::string & s);
+	bool extract(const std::string &s);
 	/**
 	 * @brief Adds a set of additional letters to the existing letters whenever there
 	 * is room for them. If the set of additional letters is too large, it does nothing
 	 * @param frombag Set of letters to add
 	 */
-	void add(const std::string & frombag);
+	void add(const std::string &frombag);
 };
 
 #endif /* PLAYER_H */

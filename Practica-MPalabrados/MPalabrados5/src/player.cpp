@@ -5,100 +5,166 @@
  */
 
 #include <cstring>
-#include <string>
-#include <cassert>
 #include "player.h"
+#include <iostream>
+///@warning complete missing #includes
 /// See http://www.cplusplus.com/reference/cstring/ for details about cstrings
 using namespace std;
+
+void removeCString(char *cstr, int pos);
+
+void sortCString(char *cstr);
+
+Player::Player(){
+    
+    letters[0]='\0';
+}
+
+int Player::size() const{
+    
+    return strlen(letters);
+}
+
+std::string Player::to_string() const{
+    
+    string s(letters);
+    return s;
+}
+
+void Player::clear(){
+    
+    letters[0]='\0';
+}
+
+bool Player::isValid(const std::string &s) const{
+    
+    char stringordenada[s.size()];
+    
+    strcpy(stringordenada,s.c_str());
+    sortCString(stringordenada);
+    
+    bool valido=true;
+    int n=0;
+    
+    for(int i=0; i<s.size() && valido==true; i++){
+        
+        bool encontrado=false;
+        
+        for(int j=n; j<size() && encontrado==false; j++){
+            
+            if(stringordenada[i] == letters[j]){
+                
+                encontrado=true;
+                n++;
+            }
+            else{
+                
+                encontrado=false;
+                n++;
+            }
+        }
+        
+        if(encontrado==false){
+            
+            valido=false;
+        }
+        else{
+            
+            valido=true;
+        }
+    }
+    
+    return valido;
+}
+
+bool Player::extract(const std::string &s){
+    
+    bool found;
+    
+    if(isValid(s)==true){
+        
+        for(int i = 0; i < s.size(); i++){
+            
+            found = false;
+            
+            for(int j = 0; j < size() && !found; j++){
+                
+                if(s[i] == letters[j]){
+                    
+                    removeCString(letters, j);
+                    found = true;
+                }
+            }
+        }
+        return true;
+    }
+    else{
+        
+        return false;
+    }
+}
+
+void Player::add(const std::string &frombag){
+    
+    if( (strlen(letters)+frombag.size()) <= 7 ){
+        
+        char cadena[frombag.size()];
+        
+        strcpy(cadena, frombag.c_str());
+        
+        strcat(letters, cadena);
+        
+        sortCString(letters);
+    }
+}
 
 /**
  * @brief Removes a position from a cstring
  * @param cstr The cstring
  * @param pos The position
  * @return The cstring is modified
+ * @warning To be fully implemented
  */
-void removeCString(char *cstr, int pos);
+void removeCString(char *cstr, int pos){
+    
+    for(int i=pos;i<strlen(cstr);i++){
+        
+        cstr[i]=cstr[i+1];
+    }
+}
 
 /**
  * @brief Sort a cstring from A to Z
  * @param cstr The cstring
  * @return The cstring is modified
+ * @warning To be fully implemented
  */
-void sortCString(char *cstr);
-
-Player::Player() {
-    clear();
-}
-
-void Player::clear() {
-     letters[0]='\0';
-     // strcmp(letters,"");
-}
-
-int Player::size() const {
-    return strlen(letters);
-}
-
-string Player::to_string() const {
-    return letters;
-}
-
-
-bool Player::extract(const std::string &s) {
-    bool res=true;
-    char final[MAXPLAYER+1];
+void sortCString(char *cstr){
     
-    strcpy(final, letters);
-    for (int i=0;i<s.size() && res;i++) {
-        char *p=strchr(final,s[i]);
-        if (p>0) {
-            removeCString(final,p-final);
-        } else
-            res = false;
-    }
-    if (res) {
-        strcpy(letters, final);
-        sortCString(letters);
-    }
-    return res;
-}
-
-bool Player::isValid(const std::string & s) const {
-    Player aux = *this;
-    bool res = false;
-    if (s.length()>0 && aux.extract(s)) {
-        res = true;
-    }
-    return res;
-}
-
-void Player::add(const std::string & frombag) {
-    string s(frombag);
-    int nlong = MAXPLAYER - size();  //how many it's need
-    if (frombag.size()> nlong)
-        s = s.substr(0,nlong);  // cut out 
-    strcat(letters,s.c_str());  // copy into letter, once converted to cstring
-    sortCString(letters);
-}
-
-void removeCString(char *cstr, int pos) {
-    assert (0 <= pos && pos <strlen(cstr));
-    for (int i=pos; i<strlen(cstr); i++)
-        cstr[i] = cstr[i+1];
-}
-
-void sortCString(char *cstr) {
-    int lowest;
-    for (int i=0; i<strlen(cstr); i++) {
-        lowest = i;
-        for(int j=i; j<strlen(cstr); j++)
-            if (cstr[j] < cstr[lowest])
-                lowest = j;
-        if (lowest != i) {
-            char aux = cstr[i];
-            cstr[i] = cstr[lowest];
-            cstr[lowest] = aux;
+    char menor,letra,aux;
+    
+    for(int i=0; i < strlen(cstr);i++){
+        
+        int posicion=i;
+        menor=cstr[i];
+            
+        for(int j=i; j < strlen(cstr); j++){
+                
+            letra=cstr[j];
+                
+            if(letra < menor){
+                    
+                menor=letra;
+                posicion=j;
+            }
+            else{
+                 menor=menor;
+                 posicion=posicion;
+            }
         }
+        aux=cstr[i];
+        cstr[i]=menor;
+        cstr[posicion]=aux;
     }
 }
 

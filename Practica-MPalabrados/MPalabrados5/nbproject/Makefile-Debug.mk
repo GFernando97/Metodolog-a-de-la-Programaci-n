@@ -35,12 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/include/tiles.o \
 	${OBJECTDIR}/src/bag.o \
 	${OBJECTDIR}/src/main.o \
 	${OBJECTDIR}/src/move.o \
 	${OBJECTDIR}/src/movelist.o \
-	${OBJECTDIR}/src/player.o
+	${OBJECTDIR}/src/player.o \
+	${OBJECTDIR}/src/tiles.o
 
 
 # C Compiler Flags
@@ -73,35 +73,35 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mpalabrados5 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/include/tiles.o: include/tiles.cpp
-	${MKDIR} -p ${OBJECTDIR}/include
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/tiles.o include/tiles.cpp
-
 ${OBJECTDIR}/src/bag.o: src/bag.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bag.o src/bag.cpp
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bag.o src/bag.cpp
 
 ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
 
 ${OBJECTDIR}/src/move.o: src/move.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/move.o src/move.cpp
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/move.o src/move.cpp
 
 ${OBJECTDIR}/src/movelist.o: src/movelist.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/movelist.o src/movelist.cpp
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/movelist.o src/movelist.cpp
 
 ${OBJECTDIR}/src/player.o: src/player.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../local/include -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/player.o src/player.cpp
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/player.o src/player.cpp
+
+${OBJECTDIR}/src/tiles.o: src/tiles.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -I../local/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tiles.o src/tiles.cpp
 
 # Subprojects
 .build-subprojects:

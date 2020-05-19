@@ -4,12 +4,15 @@
  * @note To be implemented by students
  */
 
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef TILES_H
 #define TILES_H
 #include <iostream>
-#include <cassert>
 #include "move.h"
 #include "movelist.h"
+#include <string>
 
 #define EMPTY '.'
 
@@ -54,7 +57,7 @@ public:
      * @param orig Right hand side of the assignement
      * @return this Left hand side of the assignement
      */
-    Tiles& operator=(Tiles& orig); // Operador asignación
+    Tiles& operator=(const Tiles& orig); // Operador asignación
     /**
      * @brief Query the number of columns
      * @return The number of columns
@@ -123,9 +126,10 @@ private:
      * @brief Copy data from another object
      * @param t The object to be copied
      */
-    void copy( const Tiles  &t);
+    void copy(const Tiles  &t);
 
 };
 
 
 #endif /* TILES_H */
+

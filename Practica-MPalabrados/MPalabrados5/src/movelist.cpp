@@ -2,172 +2,196 @@
  * @file movelist.cpp
  * @author DECSAI
  * @note To be implemented by students
- */
+ * @warning Complete the code
+ *  */
 #include <iostream>
-#include <fstream>
-#include <cmath>
-#include <cassert>
-#include "move.h"
+
 #include "movelist.h"
+#include <cassert>
 
 using namespace std;
 
-Movelist::Movelist() {
-    initialize();
+void Movelist::allocate(int n){
+    
+    if(n>0){
+        
+        moves = new Move [n];
+        nMove = n;
+    }
 }
 
-Movelist::Movelist(int nmov)  {
-    initialize();
-    allocate(nmov);
+void Movelist::deallocate(){
+    
+    if(moves != nullptr && nMove != 0){
+        
+        delete []moves;
+        
+        moves=nullptr;
+        nMove=0;
+    }
 }
 
-Movelist::Movelist(const Movelist& orig) {
-    initialize();
+void Movelist::copy(const Movelist& ml){
+    
+    allocate(ml.size());
+
+    for(int i = 0; i < ml.size(); i++){
+        
+        this->moves[i] = ml.get(i);
+    }
+
+}
+
+Movelist::Movelist(){
+    
+    moves = nullptr;
+    nMove = 0;
+}
+
+Movelist::Movelist(int nmov){
+    
+    moves=new Move [nmov];  
+    nMove = nmov;
+}
+
+Movelist::Movelist(const Movelist &orig){
+    
+    moves=nullptr;
+    nMove=0;
     copy(orig);
 }
 
-Movelist::~Movelist() {
+Movelist::~Movelist(){
+    
     deallocate();
 }
 
-void Movelist::assign(const Movelist& orig) {
-
-    if (this != &orig) {
+void Movelist::assign(const Movelist& orig){
+    
+    if(this != &orig){
+        
         deallocate();
         copy(orig);
     }
 }
 
-Movelist& Movelist::operator=(const Movelist& orig) {
-    if (this != &orig) {
-        deallocate();
-        copy(orig);
-    }
-    return *this;
-}
-
-
-Move Movelist::get(int p) const {    
-    assert (0 <= p && p < size());
+Move Movelist::get(int p) const{
+    
+    assert(p>=0 && p<size());
     return moves[p];
 }
 
-void Movelist::set(int p, const Move & m) {
-    assert (0 <= p && p < size());
+void Movelist::set(int p, const Move &m){
+    
+    assert(p>=0 && p<nMove);
     moves[p] = m;
 }
 
+/*inline Movelist::size(){
+    
+    
+}*/
 
-int Movelist::find(const Move& mov) const {
-   for (int i = 0; i < size(); i++) {
-        if (mov.getLetters() == get(i).getLetters()) { // OJO a completar posteriormetne
-            return i;
+int Movelist::find(const Move &mov) const{
+    
+    for(int i = 0; i < nMove; i++){
+        if(get(i).getCol() == mov.getCol())
+            if(get(i).getRow() == mov.getRow())
+                if(get(i).isHorizontal() == mov.isHorizontal())
+                    if(get(i).getScore() == mov.getScore())
+                        if(get(i).getLetters() == mov.getLetters())
+                            return i;  
+    }
+    
+    return -1;
+}
+
+void Movelist::add(const Move &mov){
+    
+    int nuevoNMove = nMove+1;
+    
+    Movelist mAux;
+    
+    mAux.allocate(nuevoNMove);
+    
+    if(nMove > 0){
+        for(int i = 0; i < nMove; i++){
+            mAux.set(i, moves[i]);
         }
     }
-    return -1;    
-}    
-
-void Movelist::add(const Move &mov) {
-    Movelist aux(size()+1);
-    for (int i=0; i<size(); i++)
-        aux.set(i,get(i));
-    aux.set(aux.size()-1, mov);
-    deallocate();
-    copy(aux);
     
-    /*
-    allocate(this->nMove+1);
-    for (int i=0; i<size(); i++)
-        set(i, aux.get(i));*/
+    mAux.set(nuevoNMove-1, mov);
     
+    assign(mAux);
 }
 
-void Movelist::remove(const Move &mov) {
-    int p = find(mov);
-    if (p>=0)
-        remove(p);
+void Movelist::remove(const Move &mov){
+    
+    if(find(mov)!= -1){
+        
+        remove(find(mov));
+    }
 }
 
-
-
-void Movelist::clear() {
-    deallocate();
+void Movelist::remove(int p){
+    
+    int newNMoves = nMove-1;
+    
+    Movelist mAux;
+    
+    mAux.allocate(newNMoves);
+    
+    for(int i = 0; i < nMove; i++){
+        
+        if(i==p){
+            while(i < nMove-1){
+                mAux.set(i, moves[i+1]);
+                i++;
+            }
+            break;
+        }
+        else mAux.set(i, moves[i]);
+    }
+    
+    assign(mAux);
 }
 
-int Movelist::getScore() const {
-    int score=0;
-    for (int i=0; i<size() && score >=0; i++) {
-        if (get(i).getScore()>=0){
-            score += get(i).getScore();
-        } else {
-            score = -1;
+void Movelist::zip(const Language &l){
+    
+    for(int i = 0; i < size(); i++){
+        string letras = get(i).getLetters();
+        
+        if(!l.query(letras) || letras.size() < 2){
+            
+            remove(i);
+            
+            i = 0;
         }
     }
-    return score;
-}
-void Movelist::remove(int p) {
-    assert (p >= 0 && p < size());
-    Movelist aux(size()-1);
-    for (int i=0, j=0; i<size(); i++)
-        if (i != p)
-            aux.set(j++,get(i));
-    (*this) = aux;
-//    allocate(this->nMove-1);
-//    for (int i=0; i<size(); i++)
-//        set(i, aux.get(i));
 }
 
-//void Movelist::zip(const Language &s)  {
-//    int pos=0;
-//    if (size()==0)
-//        return;
-//    do {
-//        cerr << "QUERY: "<<toUTF(get(pos).getLetters())<<endl;
-//        if (!s.query(get(pos).getLetters()))  {
-//            cerr << "REMOVE: "<<toUTF(get(pos).getLetters())<<endl;
-//            remove(pos);
-//        }
-//        else
-//            pos ++;
-//    } while (pos < size());
-//}
-
-void Movelist::zip(const Language &s)  {
-    for (int pos=0; pos<size();)  {
-        if (!s.query(get(pos).getLetters()))  {
-            remove(pos);
-        }
-        else
-            pos ++;
-    }
-}
-
-
-//
-// Privados
-
-void Movelist::allocate(int n) {
-    //deallocate();
-    if (n > 0) {
-        nMove = n;
-        moves = new Move[nMove];
-    }
-}
-
-void Movelist::deallocate() {
-    //if (moves != nullptr) { not necessary 
-        delete[] moves;
-        initialize();
+void Movelist::clear(){
     
-}
-
-void Movelist::copy(const Movelist& otro) {
-    allocate(otro.size());
-    for (int i = 0; i < otro.size(); ++i) {
-        set(i,otro.get(i)); 
+    if(nMove > 0){
+        nMove = 0;
+        deallocate();
     }
 }
 
+int Movelist::getScore() const{
+    
+    int totalScore = 0;
+    
+    for(int i = 0; i < nMove; i++){
+        if(get(i).getScore() != -1){
+            totalScore += get(i).getScore();
+        }
+        
+        else return -1;  
+    }
+    
+    return totalScore;
+}
 
 bool Movelist::print(std::ostream &os, bool scores) const {
     bool res=true;
@@ -183,27 +207,36 @@ bool Movelist::print(std::ostream &os, bool scores) const {
     return res;
 }
 
-bool Movelist::read(std::istream &is) {
-    Move m;
-    bool fin = false;
-    clear();
-    m.read(is);
-    while (m.getLetters().size() > 1 && !fin ) { // && m.getLetters() != "_") {
-        if (is.eof())
-            fin = true;
-        else {
-            this->add(m);
-            m.read(is);
-        }
-    }
+bool Movelist::read(std::istream& is){
     
-    return !fin;
+    string finalizador = normalizeWord("@");
+    bool finalizadorEncontrado = false;
+    
+    do{
+
+        Move aux;
+        
+        aux.read(is);
+        
+        string letrasMov = aux.getLetters();
+        
+        size_t found = aux.getLetters().find(finalizador);
+        
+        if ((found!=std::string::npos) and (letrasMov.size()==1)){
+            finalizadorEncontrado=true;
+        }
+        else if((!finalizadorEncontrado) and (letrasMov.size() < 1)){
+            return false;
+        }
+        else add(aux);
+        
+    }while(!finalizadorEncontrado );
+    
+    return finalizadorEncontrado;
 }
 
-
-
-//Sobrecarga de operadores
-Movelist& Movelist::operator=( Movelist &orig){
+Movelist&  Movelist::operator=( const Movelist &orig){
+    
     if (this != &orig) {
         deallocate();
         copy(orig);
@@ -211,20 +244,13 @@ Movelist& Movelist::operator=( Movelist &orig){
     return *this;
 }
 
-
 Movelist&  Movelist::operator+=( Move &mov){
     add(mov);
     return *this;
 }
 
-
-/**
- * @brief Overload of the insertion operator
- * @param os Output stream (cout)
- * @param m The class to be inserted in the stream
- * @return The output stream (cout)
- */
 std::ostream & operator<<(std::ostream & os, const Movelist & i){
+    
     if(i.print(os, false)){
         return os;
     }
@@ -232,13 +258,8 @@ std::ostream & operator<<(std::ostream & os, const Movelist & i){
     return os;
 }
 
-/**
- * @brief Overload of the extraction operator
- * @param os Input stream (cin)
- * @param m The class to be extracted from the stream
- * @return The input stream (cin)
- */
 std::istream & operator>>(std::istream & is, Movelist & i){
+    
     if(i.read(is)){
         return is;
     }

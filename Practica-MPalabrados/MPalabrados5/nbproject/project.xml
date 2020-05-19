@@ -12,8 +12,8 @@
             <sourceRootList>
                 <sourceRootElem>include</sourceRootElem>
                 <sourceRootElem>../local/include</sourceRootElem>
-                <sourceRootElem>../local/lib</sourceRootElem>
                 <sourceRootElem>src</sourceRootElem>
+                <sourceRootElem>../local/lib</sourceRootElem>
                 <sourceRootElem>scripts</sourceRootElem>
             </sourceRootList>
             <confList>

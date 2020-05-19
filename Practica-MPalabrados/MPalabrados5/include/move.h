@@ -4,13 +4,18 @@
  * @note To be implemented by students
  * @warning Adjust const and references when needed
  */
+
+// Alumno1: Adrián López Castro
+// Alumno2: Fernando Lojano Mayaguari
+
 #ifndef MOVE_H
 #define MOVE_H
 
-//Alumno1 apellidos11 Apellidos12 nombre1
-//Alumno2 apellidos21 Apellidos22 nombre2
-
 #include <iostream>
+#include <string>
+#include <cstring>
+#include <fstream>
+
 #include "language.h"
 /**
  * @class Move
@@ -43,7 +48,7 @@ public:
 	 * @brief Sets the main data of the class 
 	 * @param r row
 	 */
-	void setRow(int r) ;
+	void setRow(int r);
 	/**
 	 * @brief Sets the main data of the class 
 	 * @param c Column
@@ -67,7 +72,7 @@ public:
 	 * @return The sum of individual values according to the language, or -1 if the 
 	 * word does not belong to the language.
 	 */
-	int findScore(const Language &l);
+	int findScore(const Language &l)const;
 	/**
 	 * @brief Sets the value of the movement which have been calculated elsewhere 
 	 * @param s The value of the movement
@@ -102,17 +107,30 @@ public:
 	/**
 	 * @brief Shows the values stored in the screen, except score 
 	 */
-	void print( std::ostream &os) const;
+	void print(std::ostream &os) const;
 	/**
 	 * @brief Reads from keyboard the values of the class, except score 
 	 */
-	void read( std::istream &is);
-        
-        // Friend functions
+	void read(std::istream &is);
+
+	// Friend functions
 	friend std::ostream& operator<<(std::ostream& os, const Move  &m);
-	friend std::istream& operator>>(std::istream& is, Move  &m);	
+	friend std::istream& operator>>(std::istream& is,  Move  &m);
 };
 
-
+/**
+ * @brief Overload of the insertion operator
+ * @param os Output stream (cout)
+ * @param m The class to be inserted in the stream
+ * @return The output stream (cout)
+ */
+std::ostream& operator<<(std::ostream& os,  const Move  &m);
+/**
+ * @brief Overload of the extraction operator
+ * @param os Input stream (cin)
+ * @param m The class to be extracted from the stream
+ * @return The input stream (cin)
+ */
+std::istream& operator>>(std::istream& is, Move  &m);
 
 #endif /* MOVE_H */
