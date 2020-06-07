@@ -61,11 +61,8 @@ int Tiles::getHeight() const{
 }
 
 char Tiles::get(int r, int c) const{
-<<<<<<< HEAD:Practica-MPalabrados/MPalabrados5/src/tiles.cpp
     assert ((r>0 and r<=getHeight()) and (c > 0 and c <= getWidth()));
     return cell[r-1][c-1];
-=======
->>>>>>> b7b6c05... P5 done!:Practica-MPalabrados/MPalabrados5/include/tiles.cpp
     
     assert ((r>0 and r<=getHeight()) and (c > 0 and c <= getWidth()));
     
@@ -73,13 +70,11 @@ char Tiles::get(int r, int c) const{
 }
 
 void Tiles::set(int r, int c, char l){
-<<<<<<< HEAD:Practica-MPalabrados/MPalabrados5/src/tiles.cpp
     assert ((r>0 and r<= getHeight()) and (c > 0 and c <= getWidth()));
-=======
+
     
     assert ((r>0 && r<= getHeight()) && (c > 0 && c <= getWidth()));
     
->>>>>>> b7b6c05... P5 done!:Practica-MPalabrados/MPalabrados5/include/tiles.cpp
     cell[r-1][c-1] = l; 
 }
 

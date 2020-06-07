@@ -80,7 +80,7 @@ YELLOW='\033[0;33m'
 GRAY='\033[1;30m'
 WHITE='\033[1;37m'
 # Use of memory leak detector
-USE_VALGRIND=YES
+USE_VALGRIND=NO
 # Seconds to wait before killing a (possibly) hang program
 SECS_WAIT=500
 # Prints explanations of failed tests?
